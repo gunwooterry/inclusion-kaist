@@ -11,10 +11,9 @@ function Button(props) {
 
   const styles = {
     button: {
-      fontSize: '1em',
-      fontWeight: 500,
-      margin: '0.4em',
-      padding: '1em 2em',
+      fontSize: '1rem',
+      margin: '0.4rem',
+      padding: '1rem 2rem',
       textDecoration: 'none',
       display: 'inline-block',
     },
