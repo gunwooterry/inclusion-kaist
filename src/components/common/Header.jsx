@@ -10,7 +10,7 @@ function Header(props) {
 
   const style = {
     color,
-    letterSpacing: -1.2,
+    letterSpacing: -0.8,
     fontWeight: 700,
     fontSize: `${size}rem`,
   };
