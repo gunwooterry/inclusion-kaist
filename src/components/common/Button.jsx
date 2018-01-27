@@ -1,6 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const propTypes = {
+  link: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  outline: PropTypes.bool,
+  style: PropTypes.shape({}),
+  children: PropTypes.node,
+};
+
+const defaultProps = {
+  outline: false,
+  style: {},
+  children: '',
+};
+
 function Button(props) {
   const {
     link,
@@ -48,18 +62,7 @@ function Button(props) {
   );
 }
 
-Button.propTypes = {
-  link: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  outline: PropTypes.bool,
-  style: PropTypes.shape({}),
-  children: PropTypes.node,
-};
-
-Button.defaultProps = {
-  outline: false,
-  style: {},
-  children: '',
-};
+Button.propTypes = propTypes;
+Button.defaultProps = defaultProps;
 
 export default Button;

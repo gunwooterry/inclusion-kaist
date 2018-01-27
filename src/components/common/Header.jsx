@@ -1,6 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const propTypes = {
+  text: PropTypes.string.isRequired,
+  color: PropTypes.string,
+  size: PropTypes.number,
+};
+
+const defaultProps = {
+  color: '#000',
+  size: 2,
+};
+
 function Header(props) {
   const {
     text,
@@ -24,15 +35,7 @@ function Header(props) {
   );
 }
 
-Header.propTypes = {
-  text: PropTypes.string.isRequired,
-  color: PropTypes.string,
-  size: PropTypes.number,
-};
-
-Header.defaultProps = {
-  color: '#000',
-  size: 2,
-};
+Header.propTypes = propTypes;
+Header.defaultProps = defaultProps;
 
 export default Header;
