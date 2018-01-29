@@ -2,11 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  backgroundColor: PropTypes.string
+  backgroundColor: PropTypes.string,
+  style: PropTypes.shape({}),
+  children: PropTypes.node,
 };
 
 const defaultProps = {
   backgroundColor: '#FFF',
+  style: {},
+  children: '',
 };
 
 function Section(props) {
@@ -16,14 +20,21 @@ function Section(props) {
   } = props;
 
   const styles = {
-    sectionStyle: {
+    section: {
       width: '100%',
-      backgroundColor: backgroundColor,
-      padding: '32px',
+      backgroundColor,
+      paddingTop: '32px',
+      paddingBottom: '32px',
+      clear: 'both',
+      margin: '0px',
     },
   };
 
-  const style = styles.sectionStyle
+  const style = Object.assign(
+    {},
+    styles.section,
+    props.style,
+  );
 
   return (
     <div
