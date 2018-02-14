@@ -1,18 +1,42 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import NavBar from './components/common/NavBar';
 
-class App extends Component {
+import Landing from './components/Landing';
+
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isTop: true,
+    };
+  }
+
+  componentDidMount() {
+    document.addEventListener('scroll', () => {
+      const isTop = window.scrollY < 50;
+      if (isTop !== this.state.isTop) {
+        this.setState({ isTop });
+      }
+    });
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <NavBar isTop={this.state.isTop}>
+          <NavBar.Item
+            text="Left"
+            link="/"
+            isTop={this.state.isTop}
+          />
+          <NavBar.Item
+            text="Right"
+            link="/"
+            right
+            isTop={this.state.isTop}
+          />
+        </NavBar>
+        <Landing />
       </div>
     );
   }

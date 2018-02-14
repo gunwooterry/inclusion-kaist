@@ -50,32 +50,30 @@ function Row(props) {
     },
   };
 
-  const xsStyle = Object.assign(
+  const rowStyle = Object.assign(
     {},
     styles.row,
-    styles.xs,
     props.style,
+  );
+
+  const xsStyle = Object.assign(
+    rowStyle,
+    styles.xs,
   );
 
   const smStyle = Object.assign(
-    {},
-    styles.row,
+    rowStyle,
     styles.sm,
-    props.style,
   );
 
   const mdStyle = Object.assign(
-    {},
-    styles.row,
+    rowStyle,
     styles.md,
-    props.style,
   );
 
   const lgStyle = Object.assign(
-    {},
-    styles.row,
+    rowStyle,
     styles.lg,
-    props.style,
   );
 
   return (

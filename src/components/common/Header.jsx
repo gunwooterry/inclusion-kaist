@@ -9,7 +9,7 @@ const propTypes = {
 
 const defaultProps = {
   color: '#000',
-  size: 2,
+  size: 1.8,
 };
 
 function Header(props) {

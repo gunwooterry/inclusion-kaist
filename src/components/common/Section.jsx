@@ -23,8 +23,8 @@ function Section(props) {
     section: {
       width: '100%',
       backgroundColor,
-      paddingTop: '32px',
-      paddingBottom: '32px',
+      paddingTop: '2rem',
+      paddingBottom: '2.5rem',
       clear: 'both',
       margin: '0px',
     },
