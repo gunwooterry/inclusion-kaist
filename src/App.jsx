@@ -1,5 +1,8 @@
 import React from 'react';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+
 import NavBar from './components/common/NavBar';
+
 
 import Landing from './components/Landing';
 
@@ -20,26 +23,58 @@ class App extends React.Component {
     });
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.history.action === 'PUSH' && this.props.location.pathname !== prevProps.location.pathname) {
+      window.scrollTo(0, 0);
+    }
+  }
+
   render() {
     return (
       <div>
         <NavBar isTop={this.state.isTop}>
           <NavBar.Item
-            text="Left"
+            text="Inclusion KAIST"
             link="/"
+            bold
             isTop={this.state.isTop}
           />
           <NavBar.Item
-            text="Right"
-            link="/"
+            text="제보하기"
+            link="/report/"
+            right
+            isTop={this.state.isTop}
+          />
+          <NavBar.Item
+            text="유관기관"
+            link="/orgs/"
+            right
+            isTop={this.state.isTop}
+          />
+          <NavBar.Item
+            text="뉴스"
+            link="/news/"
+            right
+            isTop={this.state.isTop}
+          />
+          <NavBar.Item
+            text="소개"
+            link="/about/"
             right
             isTop={this.state.isTop}
           />
         </NavBar>
-        <Landing />
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/report/" component={Landing} />
+          <Route exact path="/orgs/" component={Landing} />
+          <Route exact path="/news/" component={Landing} />
+          <Route exact path="/about/" component={Landing} />
+          <Redirect from='/' to='/' />
+        </Switch>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 const propTypes = {
   text: PropTypes.string,
@@ -7,12 +8,14 @@ const propTypes = {
   right: PropTypes.bool,
   isTop: PropTypes.bool.isRequired,
   children: PropTypes.node,
+  bold: PropTypes.bool,
 };
 
 const defaultProps = {
   text: '',
   right: false,
   children: '',
+  bold: false,
 };
 
 function NavBarItem(props) {
@@ -22,12 +25,14 @@ function NavBarItem(props) {
     right,
     isTop,
     children,
+    bold,
   } = props;
 
   const styles = {
     navBarItem: {
       margin: '0 1rem',
       textDecoration: 'none',
+      fontWeight: bold ? '600' : '300',
     },
 
     right: {
@@ -51,12 +56,9 @@ function NavBarItem(props) {
   );
 
   return (
-    <a
-      href={link}
-      style={style}
-    >
+    <NavLink to={link} style={style}>
       {text !== '' ? text : children}
-    </a>
+    </NavLink>
   );
 }
 
