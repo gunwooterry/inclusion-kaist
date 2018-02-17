@@ -5,6 +5,7 @@ import NavBar from './components/common/NavBar';
 
 
 import Landing from './components/Landing';
+import Report from './components/Report';
 
 class App extends React.Component {
   constructor() {
@@ -30,43 +31,45 @@ class App extends React.Component {
   }
 
   render() {
+    const isReport = this.props.location.pathname === '/report/';
+    console.log(isReport);
     return (
       <div>
-        <NavBar isTop={this.state.isTop}>
+        <NavBar isTop={this.state.isTop && !isReport}>
           <NavBar.Item
             text="Inclusion KAIST"
             link="/"
             bold
-            isTop={this.state.isTop}
+            isTop={this.state.isTop && !isReport}
           />
           <NavBar.Item
             text="제보하기"
             link="/report/"
             right
-            isTop={this.state.isTop}
+            isTop={this.state.isTop && !isReport}
           />
           <NavBar.Item
             text="유관기관"
             link="/orgs/"
             right
-            isTop={this.state.isTop}
+            isTop={this.state.isTop && !isReport}
           />
           <NavBar.Item
             text="뉴스"
             link="/news/"
             right
-            isTop={this.state.isTop}
+            isTop={this.state.isTop && !isReport}
           />
           <NavBar.Item
             text="소개"
             link="/about/"
             right
-            isTop={this.state.isTop}
+            isTop={this.state.isTop && !isReport}
           />
         </NavBar>
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route exact path="/report/" component={Landing} />
+          <Route exact path="/report/" component={Report} />
           <Route exact path="/orgs/" component={Landing} />
           <Route exact path="/news/" component={Landing} />
           <Route exact path="/about/" component={Landing} />
