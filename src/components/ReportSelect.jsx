@@ -28,7 +28,7 @@ class ReportSelect extends Component{
   }
   render() {
     return (
-      <div style={this.props.display ? null : { display: 'none'}}>
+      <div>
         <Section style={{textAlign: 'center'}}>
           <Row>
             <h1 style={styles.titleStyle}>약간의 용기가 삶을 바꿉니다.</h1>

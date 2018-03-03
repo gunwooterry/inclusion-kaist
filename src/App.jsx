@@ -4,6 +4,7 @@ import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import NavBar from './components/common/NavBar';
 
 
+import Faculty from './components/Faculty';
 import Landing from './components/Landing';
 import Report from './components/Report';
 
@@ -31,7 +32,7 @@ class App extends React.Component {
   }
 
   render() {
-    const isReport = this.props.location.pathname === '/report/';
+    const isReport = this.props.location.pathname === '/report/' || this.props.location.pathname === '/news/';
     console.log(isReport);
     return (
       <div>
@@ -71,7 +72,7 @@ class App extends React.Component {
           <Route exact path="/" component={Landing} />
           <Route exact path="/report/" component={Report} />
           <Route exact path="/orgs/" component={Landing} />
-          <Route exact path="/news/" component={Landing} />
+          <Route exact path="/news/" component={Faculty} />
           <Route exact path="/about/" component={Landing} />
           <Redirect from='/' to='/' />
         </Switch>

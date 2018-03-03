@@ -16,6 +16,11 @@ const styles = {
     top: '50%',
     cursor: 'pointer',
   },
+  divStyle: {
+    marginTop: 100,
+    overflow: 'auto',
+    scrollSnapType: 'y mandatory',
+  },
 };
 
 class Report extends Component {
@@ -26,6 +31,11 @@ class Report extends Component {
       showLeftArrow: false,
       showRightArrow: false,
     };
+  }
+  componentDidMount() {
+    document.addEventListener('scroll', () => {
+      console.log('scrolled: ' + window.scrollY);
+    });
   }
   onArrowClickHandler(change) {
     this.setState((prevState) => {
@@ -81,40 +91,15 @@ class Report extends Component {
   }
   render() {
     return (
-      <div style={{marginTop: 100}}>
-        <Row>
-          <Column xs="1" sm="1" md="1" lg="1">
-            {
-              this.state.showLeftArrow ?
-                <img
-                  style={styles.arrowStyle}
-                  src={leftArrow}
-                  alt="leftArrow"
-                  onClick={() => this.onArrowClickHandler(-1)}
-                /> :
-                null
-            }
-          </Column>
-          <Column xs="10" sm="10" md="10" lg="10">
-            {/*{this.renderPage(this.state.page)}*/}
-            <ReportSelect display={this.state.page === 0} onClickHandler={() => this.onClickBoxHandler()} />
-            <ReportExplain display={this.state.page === 1} />
-            <ReportPhone display={this.state.page === 2} onSubmit={() => this.onSubmit()} />
-            <ReportDone display={this.state.page === 3} />
-          </Column>
-          <Column xs="1" sm="1" md="1" lg="1">
-            {
-              this.state.showRightArrow ?
-                <img
-                  style={styles.arrowStyle}
-                  src={rightArrow}
-                  alt="rightArrow"
-                  onClick={() => this.onArrowClickHandler(1)}
-                /> :
-                null
-            }
-          </Column>
-        </Row>
+      <div style={styles.divStyle}>
+        <Column xs="1" sm="1" md="1" lg="1"/>
+        <Column xs="10" sm="10" md="10" lg="10">
+          <ReportSelect display={this.state.page === 0} onClickHandler={() => this.onClickBoxHandler()} />
+          <ReportExplain display={this.state.page === 1} />
+          <ReportPhone display={this.state.page === 2} onSubmit={() => this.onSubmit()} />
+          <ReportDone display={this.state.page === 3} />
+        </Column>
+        <Column xs="1" sm="1" md="1" lg="1"/>
       </div>
     );
   }

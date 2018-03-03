@@ -4,6 +4,11 @@ import Column from './common/Column';
 import Section from './common/Section';
 
 const styles = {
+  titleStyle: {
+    fontSize: '2.5rem',
+    fontWeight: '600',
+    textAlign: 'left',
+  },
   subtitleStyle: {
     color: '#828282',
     fontSize: '1.8rem',
@@ -38,23 +43,21 @@ const styles = {
 class ReportPhone extends Component {
   render() {
     return (
-      <div style={this.props.display ? null : { display: 'none'}}>
-        <Section style={{textAlign: 'center'}}>
-          <Row>
-            <h3 style={styles.subtitleStyle}>
-              나중에 문제 해결을 위해 연락처를 여쭤 봐도 될까요?
-            </h3>
-            <h3 style={styles.subtitleStyle}>
-              부담이 된다면 남기지 않으셔도 됩니다.
-            </h3>
-          </Row>
-        </Section>
+      <Section style={{minHeight: '40rem', marginTop: '3.5rem'}}>
+        <Row>
+          <h3 style={styles.titleStyle}>
+            나중에 문제 해결을 위해 연락처를 여쭤 봐도 될까요?
+          </h3>
+          <h3 style={styles.subtitleStyle}>
+            부담이 된다면 남기지 않으셔도 됩니다.
+          </h3>
+        </Row>
         <Row>
           <input style={styles.inputStyle} />
           <div style={styles.buttonStyle} onClick={this.props.onSubmit}>제출하기</div>
           <div style={{ ...styles.buttonStyle, width: '15rem', backgroundColor: '#FFFFFF', color: '#4598ed', marginLeft: '2rem' }} onClick={this.props.onSubmit}>연락처 없이 제출하기</div>
         </Row>
-      </div>
+      </Section>
     );
   }
 }
