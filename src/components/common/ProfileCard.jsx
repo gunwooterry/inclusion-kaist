@@ -25,6 +25,7 @@ function ProfileCard(props) {
     imageStyle: {
       width: '100%',
       height: '15rem',
+      objectFit: 'cover'
     },
     nameStyle: {
       margin: '0.2rem',
