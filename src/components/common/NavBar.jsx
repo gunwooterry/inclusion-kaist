@@ -9,7 +9,6 @@ const kaistBlue = '#004191';
 
 const propTypes = {
   isTop: PropTypes.bool.isRequired,
-  isMain: PropTypes.bool.isRequired,
   children: PropTypes.node,
 };
 
@@ -20,7 +19,6 @@ const defaultProps = {
 function NavBar(props) {
   const {
     isTop,
-    isMain,
     children,
   } = props;
 
@@ -52,7 +50,7 @@ function NavBar(props) {
   const style = Object.assign(
     {},
     styles.navBar,
-    isTop && isMain ? styles.main : (isTop ? styles.top : styles.scrolling),
+    isTop ? styles.top : styles.scrolling,
   );
 
   return (

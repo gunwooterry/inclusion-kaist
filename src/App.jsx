@@ -8,6 +8,9 @@ import Faculty from './components/Faculty';
 import Landing from './components/Landing';
 import Report from './components/Report';
 
+const kaistBlue = '#004191';
+const white = '#FFF';
+
 class App extends React.Component {
   constructor() {
     super();
@@ -33,10 +36,10 @@ class App extends React.Component {
 
   render() {
     const isReport = this.props.location.pathname === '/report/' || this.props.location.pathname === '/news/' || this.props.location.pathname === '/faculty/';
-    const isMain = this.props.location.pathname === '/' || this.props.location.pathname === '/about/' || this.props.location.pathname === '/orgs/';
+    const isMain = this.props.location.pathname === '/' || this.props.location.pathname === '/orgs/';
     console.log(this.props.location.pathname)
     return (
-      <div style={{paddingTop:60}}>
+      <div style={{paddingTop:60, background: isMain ? kaistBlue : white}}>
         <NavBar isTop={this.state.isTop && !isReport} isMain={this.state.isTop && isMain}>
           <NavBar.Item
             text="Inclusion KAIST"

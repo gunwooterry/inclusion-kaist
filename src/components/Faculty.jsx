@@ -7,11 +7,20 @@ import Column from './common/Column';
 import ProfileCard from './common/ProfileCard';
 
 import facultyList from './../static/FacultyList';
+import staffList from './../static/StaffList';
 
 const renderFacultyList = facultyList.map((person) => {
   return (
-    <Column xs="6" sm="4" md="4" lg="3">
+    <Column xs="12" sm="4" md="4" lg="3">
       <ProfileCard name={person.name} dept={person.dept} position={person.position} imagePath={person.imagePath} />
+    </Column>
+  );
+});
+
+const renderStaffList = staffList.map((person) => {
+  return (
+    <Column xs="12" sm="4" md="4" lg="3">
+      <ProfileCard blue name={person.name} dept={person.dept} position={person.position} imagePath={person.imagePath} />
     </Column>
   );
 });
@@ -35,7 +44,7 @@ function Faculty() {
           <Header text="Special Thanks To" centered />
         </Row>
         <Row>
-          {renderFacultyList}
+          {renderStaffList}
         </Row>
       </Section>
     </div>
