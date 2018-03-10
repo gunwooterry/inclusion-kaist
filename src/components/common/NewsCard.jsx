@@ -26,7 +26,7 @@ function NewsCard(props) {
       margin: `${size * 0.8}rem`,
     },
     imageStyle: {
-      width: '12rem',
+      width: '30%',
       height: '12rem',
       display: 'inline-block',
     },
@@ -34,7 +34,7 @@ function NewsCard(props) {
       margin: '0.2rem',
       fontSize: `${size}rem`,
       wordWrap: 'break-word',
-      whiteSpace: 'pre',
+      whiteSpace: 'initial',
       width: '15rem',
     },
     dateStyle: {
@@ -45,8 +45,7 @@ function NewsCard(props) {
 
   return (
     <div style={styles.boxStyle}>
-      <div style={styles.imageStyle} />
-      {/* <img style={styles.imageStyle} src={ryuImage} alt="professor" /> */}
+      <img style={styles.imageStyle} src={ryuImage} alt="professor" />
       <div style={styles.contentStyle}>
         <h3 style={styles.titleStyle}>{title}</h3>
         <p style={styles.dateStyle}>{date}</p>
@@ -63,7 +62,7 @@ NewsCard.propTypes = {
 };
 
 NewsCard.defaultProps = {
-  title: '즐거운 크리스마스, 과연 모두에게 즐거울까?',
+  title: '즐거운 크리스마스, 과연 모두에게 즐거울까? 과연 과연 과연',
   date: '2017-12-24',
   imagePath: './../../static/ryu.png',
   size: 1,
