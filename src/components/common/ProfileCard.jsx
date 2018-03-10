@@ -15,17 +15,16 @@ function ProfileCard(props) {
 
   const styles = {
     boxStyle: {
-      border: '0.1rem solid #ededed',
+      border: '1px solid #cccccc',
       borderRadius: '0.1rem',
-      height: '21rem', // width의 4/3 유
-      margin: 'auto',
+      margin: '15px auto',
       textAlign: 'left',
       verticalAlign: 'top',
     },
     imageStyle: {
       width: '100%',
       height: '15rem',
-      objectFit: 'cover'
+      objectFit: 'cover',
     },
     nameStyle: {
       margin: '0.2rem',
@@ -40,10 +39,10 @@ function ProfileCard(props) {
   return (
     <div style={styles.boxStyle}>
       <img style={styles.imageStyle} src={ryuImage} alt="professor" />
-      <div style={{margin: '0 auto'}} >
-      <h3 style={styles.nameStyle}>{name}</h3>
-      <p style={styles.posStyle}>{dept}</p>
-      <p style={styles.posStyle}>{position}</p>
+      <div style={{ padding: '4px 12px', margin: '0 auto' }}>
+        <h3 style={styles.nameStyle}>{name}</h3>
+        <p style={styles.posStyle}>{dept}</p>
+        <p style={styles.posStyle}>{position}</p>
       </div>
     </div>
   );

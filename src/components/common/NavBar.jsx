@@ -4,8 +4,12 @@ import PropTypes from 'prop-types';
 import NavBarItem from './NavBarItem';
 import Row from './Row';
 
+
+const kaistBlue = '#004191';
+
 const propTypes = {
   isTop: PropTypes.bool.isRequired,
+  isMain: PropTypes.bool.isRequired,
   children: PropTypes.node,
 };
 
@@ -16,6 +20,7 @@ const defaultProps = {
 function NavBar(props) {
   const {
     isTop,
+    isMain,
     children,
   } = props;
 
@@ -24,11 +29,16 @@ function NavBar(props) {
       position: 'fixed',
       top: 0,
       width: '100%',
-      padding: '1rem 0',
+      padding: '18px 0',
     },
 
     top: {
       background: 'transparent',
+      color: '#FFF',
+    },
+
+    main: {
+      background: kaistBlue,
       color: '#FFF',
     },
 
@@ -42,7 +52,7 @@ function NavBar(props) {
   const style = Object.assign(
     {},
     styles.navBar,
-    isTop ? styles.top : styles.scrolling,
+    isTop && isMain ? styles.main : (isTop ? styles.top : styles.scrolling),
   );
 
   return (

@@ -24,7 +24,7 @@ function Section(props) {
       width: '100%',
       backgroundColor,
       paddingTop: '2rem',
-      paddingBottom: '2.5rem',
+      paddingBottom: '3rem',
       clear: 'both',
       margin: '0px',
     },

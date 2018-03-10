@@ -32,11 +32,12 @@ class App extends React.Component {
   }
 
   render() {
-    const isReport = this.props.location.pathname === '/report/' || this.props.location.pathname === '/news/';
-    console.log(isReport);
+    const isReport = this.props.location.pathname === '/report/' || this.props.location.pathname === '/news/' || this.props.location.pathname === '/faculty/';
+    const isMain = this.props.location.pathname === '/' || this.props.location.pathname === '/about/' || this.props.location.pathname === '/orgs/';
+    console.log(this.props.location.pathname)
     return (
-      <div>
-        <NavBar isTop={this.state.isTop && !isReport}>
+      <div style={{paddingTop:60}}>
+        <NavBar isTop={this.state.isTop && !isReport} isMain={this.state.isTop && isMain}>
           <NavBar.Item
             text="Inclusion KAIST"
             link="/"
@@ -56,6 +57,12 @@ class App extends React.Component {
             isTop={this.state.isTop && !isReport}
           />
           <NavBar.Item
+            text="사람들"
+            link="/faculty/"
+            right
+            isTop={this.state.isTop && !isReport}
+          />
+          <NavBar.Item
             text="뉴스"
             link="/news/"
             right
@@ -63,7 +70,7 @@ class App extends React.Component {
           />
           <NavBar.Item
             text="소개"
-            link="/about/"
+            link="/"
             right
             isTop={this.state.isTop && !isReport}
           />
@@ -72,9 +79,10 @@ class App extends React.Component {
           <Route exact path="/" component={Landing} />
           <Route exact path="/report/" component={Report} />
           <Route exact path="/orgs/" component={Landing} />
+          <Route exact path="/faculty/" component={Faculty} />
           <Route exact path="/news/" component={Faculty} />
-          <Route exact path="/about/" component={Landing} />
-          <Redirect from='/' to='/' />
+          <Route exact path="/" component={Landing} />
+          <Redirect from="/" to="/" />
         </Switch>
       </div>
     );
