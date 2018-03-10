@@ -5,6 +5,7 @@ import NavBar from './components/common/NavBar';
 
 
 import Faculty from './components/Faculty';
+import Organization from './components/Organization';
 import Landing from './components/Landing';
 import Report from './components/Report';
 
@@ -35,9 +36,8 @@ class App extends React.Component {
   }
 
   render() {
-    const isReport = this.props.location.pathname === '/report/' || this.props.location.pathname === '/news/' || this.props.location.pathname === '/faculty/';
-    const isMain = this.props.location.pathname === '/' || this.props.location.pathname === '/orgs/';
-    console.log(this.props.location.pathname)
+    const isReport = this.props.location.pathname === '/report/' || this.props.location.pathname === '/news/' || this.props.location.pathname === '/faculty/' || this.props.location.pathname === '/orgs/';
+    const isMain = this.props.location.pathname === '/';
     return (
       <div style={{paddingTop:60, background: isMain ? kaistBlue : white}}>
         <NavBar isTop={this.state.isTop && !isReport} isMain={this.state.isTop && isMain}>
@@ -81,7 +81,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/report/" component={Report} />
-          <Route exact path="/orgs/" component={Landing} />
+          <Route exact path="/orgs/" component={Organization} />
           <Route exact path="/faculty/" component={Faculty} />
           <Route exact path="/news/" component={Faculty} />
           <Route exact path="/" component={Landing} />
