@@ -2,7 +2,9 @@ import React from 'react';
 import Typist from 'react-typist';
 
 import Button from './common/Button';
+import Column from './common/Column';
 import Header from './common/Header';
+import NewsCard from './common/NewsCard';
 import Section from './common/Section';
 import Row from './common/Row';
 
@@ -41,7 +43,14 @@ function Landing() {
       <Section backgroundColor={white}>
         <Row style={{ textAlign: 'center' }}>
           <Header text="뉴스" centered />
-          <div style={{ height: 100 }} />
+          <div style={{ marginTop: '2rem', marginBottom: '2rem' }}>
+            <Column xs={12} sm={12} md={6} lg={6}>
+              <NewsCard />
+            </Column>
+            <Column xs={12} sm={12} md={6} lg={6}>
+              <NewsCard />
+            </Column>
+          </div>
           <Button link="/" color={kaistBlue}>
             뉴스 더 보기
           </Button>

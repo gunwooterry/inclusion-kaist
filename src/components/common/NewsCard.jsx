@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ryuImage from './../../static/ryu.png';
 
-
 function NewsCard(props) {
   const {
     title,
@@ -13,9 +12,9 @@ function NewsCard(props) {
 
   const styles = {
     boxStyle: {
-      border: '0.1rem solid #ededed',
+      border: '0.1rem solid #EDEDED',
       borderRadius: '0.1rem',
-      width: '30rem',
+      width: '100%',
       height: '12rem',
       margin: 'auto',
       textAlign: 'left',
@@ -27,7 +26,7 @@ function NewsCard(props) {
       margin: `${size * 0.8}rem`,
     },
     imageStyle: {
-      width: '12rem',
+      width: '30%',
       height: '12rem',
       display: 'inline-block',
     },
@@ -35,7 +34,7 @@ function NewsCard(props) {
       margin: '0.2rem',
       fontSize: `${size}rem`,
       wordWrap: 'break-word',
-      whiteSpace: 'pre',
+      whiteSpace: 'initial',
       width: '15rem',
     },
     dateStyle: {
@@ -63,8 +62,7 @@ NewsCard.propTypes = {
 };
 
 NewsCard.defaultProps = {
-  title: '즐거운 크리스마스,\n' +
-  '과연 모두에게 즐거울까? ',
+  title: '즐거운 크리스마스, 과연 모두에게 즐거울까? 과연 과연 과연',
   date: '2017-12-24',
   imagePath: './../../static/ryu.png',
   size: 1,
