@@ -6,45 +6,34 @@ import Row from './common/Row';
 import Column from './common/Column';
 import ProfileCard from './common/ProfileCard';
 
-import facultyList from './../static/FacultyList';
-import staffList from './../static/StaffList';
+import facultyList from '../static/FacultyList';
+import staffList from '../static/StaffList';
+import { colors } from '../static/constants';
 
-const renderFacultyList = facultyList.map((person) => {
-  return (
-    <Column xs="12" sm="4" md="4" lg="3">
-      <ProfileCard name={person.name} dept={person.dept} position={person.position} imagePath={person.imagePath} />
-    </Column>
-  );
-});
-
-const renderStaffList = staffList.map((person) => {
-  return (
-    <Column xs="12" sm="4" md="4" lg="3">
-      <ProfileCard blue name={person.name} dept={person.dept} position={person.position} imagePath={person.imagePath} />
-    </Column>
-  );
-});
-
-const white = '#FFFFFF';
-const lightBlue = '#EBF2F8';
+const renderProfiles = persons => persons.map(person => (
+  <Column xs="12" sm="4" md="4" lg="3">
+    <ProfileCard
+      name={person.name}
+      dept={person.dept}
+      position={person.position}
+      imagePath={person.imagePath}
+    />
+  </Column>
+));
 
 function Faculty() {
   return (
     <div>
-      <Section backgroundColor={white}>
+      <Section backgroundColor={colors.white}>
         <Row style={{ textAlign: 'center' }}>
           <Header text="Faculties" centered />
-        </Row>
-        <Row>
-          {renderFacultyList}
+          {renderProfiles(facultyList)}
         </Row>
       </Section>
-      <Section backgroundColor={lightBlue}>
+      <Section backgroundColor={colors.lightBlue}>
         <Row style={{ textAlign: 'center' }}>
           <Header text="Special Thanks To" centered />
-        </Row>
-        <Row>
-          {renderStaffList}
+          {renderProfiles(staffList)}
         </Row>
       </Section>
     </div>

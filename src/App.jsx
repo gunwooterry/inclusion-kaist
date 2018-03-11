@@ -3,7 +3,6 @@ import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 
 import NavBar from './components/common/NavBar';
 
-
 import Faculty from './components/Faculty';
 import Organization from './components/Organization';
 import Landing from './components/Landing';
@@ -30,16 +29,22 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.history.action === 'PUSH' && this.props.location.pathname !== prevProps.location.pathname) {
+    const { history, location } = this.props;
+    if (
+      history.action === 'PUSH' &&
+      location.pathname !== prevProps.location.pathname
+    ) {
       window.scrollTo(0, 0);
     }
   }
 
   render() {
-    const isReport = this.props.location.pathname === '/report/' || this.props.location.pathname === '/news/' || this.props.location.pathname === '/faculty/' || this.props.location.pathname === '/orgs/';
-    const isMain = this.props.location.pathname === '/';
+    const { location } = this.props;
+    const { pathname } = location;
+    const isReport = pathname === '/report/' || pathname === '/news/' || pathname === '/faculty/' || pathname === '/orgs/';
+    const isMain = pathname === '/';
     return (
-      <div style={{paddingTop:60, background: isMain ? kaistBlue : white}}>
+      <div style={{ paddingTop: 60, background: isMain ? kaistBlue : white }}>
         <NavBar isTop={this.state.isTop && !isReport} isMain={this.state.isTop && isMain}>
           <NavBar.Item
             text="Inclusion KAIST"

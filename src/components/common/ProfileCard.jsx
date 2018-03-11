@@ -2,10 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import ryuImage from './../../static/ryu.png';
-import Column from './Column';
 
-const white = '#FFF';
-const extraLightBlue = '#F8F8F8';
+const propTypes = {
+  name: PropTypes.string.isRequired,
+  dept: PropTypes.string,
+  position: PropTypes.string,
+  imagePath: PropTypes.string.isRequired,
+  size: PropTypes.number,
+};
+
+const defaultProps = {
+  dept: '',
+  position: '',
+  size: 1.2,
+};
 
 function ProfileCard(props) {
   const {
@@ -14,17 +24,14 @@ function ProfileCard(props) {
     position,
     imagePath,
     size,
-    blue,
   } = props;
 
   const styles = {
     boxStyle: {
-      border: '1px solid #cccccc',
-      borderRadius: '0.1rem',
       margin: '15px auto',
       textAlign: 'left',
       verticalAlign: 'top',
-      backgroundColor: blue ? extraLightBlue : white,
+      backgroundColor: 'transparent',
     },
     imageStyle: {
       width: '100%',
@@ -67,20 +74,7 @@ function ProfileCard(props) {
   );
 }
 
-ProfileCard.propTypes = {
-  name: PropTypes.string,
-  dept: PropTypes.string,
-  position: PropTypes.string,
-  imagePath: PropTypes.string,
-  size: PropTypes.number,
-};
-
-ProfileCard.defaultProps = {
-  name: 'Sukyung Ryu',
-  dept: 'KAIST SoC',
-  position: 'Professor',
-  imagePath: './../../static/ryu.png',
-  size: 1.2,
-};
+ProfileCard.propTypes = propTypes;
+ProfileCard.defaultProps = defaultProps;
 
 export default ProfileCard;

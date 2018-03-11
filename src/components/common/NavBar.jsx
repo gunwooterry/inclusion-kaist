@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import NavBarItem from './NavBarItem';
 import Row from './Row';
 
-
-const kaistBlue = '#004191';
+import { colors } from '../../static/constants';
 
 const propTypes = {
   isTop: PropTypes.bool.isRequired,
@@ -32,17 +31,17 @@ function NavBar(props) {
 
     top: {
       background: 'transparent',
-      color: '#FFF',
+      color: colors.white,
     },
 
     main: {
-      background: kaistBlue,
-      color: '#FFF',
+      background: colors.kaistBlue,
+      color: colors.white,
     },
 
     scrolling: {
-      backgroundColor: '#FFF',
-      color: '#000',
+      backgroundColor: colors.white,
+      color: colors.black,
       boxShadow: '0 1px 2px rgba(0, 0, 0, 0.12)',
     },
   };

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
+import { colors } from '../../static/constants';
+
 const propTypes = {
   text: PropTypes.string,
   link: PropTypes.string.isRequired,
@@ -40,11 +42,11 @@ function NavBarItem(props) {
     },
 
     top: {
-      color: '#FFF',
+      color: colors.white,
     },
 
     scrolling: {
-      color: '#000',
+      color: colors.black,
     },
   };
 
