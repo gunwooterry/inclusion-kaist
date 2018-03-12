@@ -7,7 +7,9 @@ import Header from './common/Header';
 import NewsCard from './common/NewsCard';
 import Section from './common/Section';
 import Row from './common/Row';
+
 import { colors } from '../static/constants';
+import { articles } from '../static/placeholders';
 
 const styles = {
   container: {
@@ -50,12 +52,15 @@ function Landing() {
         <Row style={{ textAlign: 'center' }}>
           <Header text="뉴스" centered />
           <div style={styles.container}>
-            <Column xs={12} sm={12} md={6} lg={6}>
-              <NewsCard />
-            </Column>
-            <Column xs={12} sm={12} md={6} lg={6}>
-              <NewsCard />
-            </Column>
+            {articles.slice(0, 4).map(article => (
+              <Column xs={12} sm={12} md={6} lg={6}>
+                <NewsCard
+                  title={article.title}
+                  date={article.date}
+                  imagePath={article.imagePath}
+                />
+              </Column>
+            ))}
           </div>
           <Button link="/" color={colors.kaistBlue}>
             뉴스 더 보기

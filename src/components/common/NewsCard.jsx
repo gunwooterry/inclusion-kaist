@@ -2,6 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ryuImage from './../../static/ryu.png';
 
+const propTypes = {
+  title: PropTypes.string.isRequired,
+  date: PropTypes.instanceOf(Date).isRequired,
+  imagePath: PropTypes.string,
+};
+
+const defaultProps = {
+  imagePath: './../../static/ryu.png',
+};
+
 function NewsCard(props) {
   const {
     title,
@@ -47,20 +57,13 @@ function NewsCard(props) {
       <img style={styles.imageStyle} src={ryuImage} alt="professor" />
       <div style={styles.contentStyle}>
         <h3 style={styles.titleStyle}>{title}</h3>
-        <p style={styles.dateStyle}>{date}</p>
+        <p style={styles.dateStyle}>{date.toISOString().split('T')[0]}</p>
       </div>
     </div>
   );
 }
 
-NewsCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  date: PropTypes.instanceOf(Date).isRequired,
-  imagePath: PropTypes.string,
-};
-
-NewsCard.defaultProps = {
-  imagePath: './../../static/ryu.png',
-};
+NewsCard.propTypes = propTypes;
+NewsCard.defaultProps = defaultProps;
 
 export default NewsCard;
