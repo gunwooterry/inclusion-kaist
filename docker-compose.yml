@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  server:
+    container_name: inclusion-api
+    env_file:
+      - environments/mysql.env
+      - environments/settings.env
+      - environments/secret.env
+    restart: always
+    build: ./server/
+    entrypoint: /code/docker-entrypoint.sh
+    volumes:
+      - ./server:/code
+      - static:/static
+    environment:
+      DATABASE_URL: 'mysql'
+    ports:
+      - "8000:8000"
+    expose:
+      - "8000"
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: inclusion-mysql
+    env_file:
+      - environments/mysql.env
+      - environments/secret.env
+    restart: always
+    image: mysql:8.0
+    volumes:
+      - mysql-persistent-volume:/var/lib/mysql
+    expose:
+      - "3306"
+
+  nginx:
+    container_name: inclusion-nginx
+    restart: always
+    build: ./nginx/
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - ./nginx/sites-enabled:/etc/nginx/sites-enabled
+      - static:/static
+    links:
+      - server:server
+      - client:client
+
+  client:
+    container_name: inclusion-web
+    restart: always
+    build: ./client/
+    command: npm start
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    volumes:
+      - ./client:/code
+      - node_modules:/code/node_modules
+
+volumes:
+  mysql-persistent-volume:
+  static:
+  node_modules:
