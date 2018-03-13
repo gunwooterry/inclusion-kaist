@@ -40,12 +40,18 @@ PREREQ_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
 ]
 
 PROJECT_APPS = [
+    'data',
+    'report',
 ]
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

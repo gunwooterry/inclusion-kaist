@@ -16,6 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from data.views import ArticleList, OrganizationList, PersonList
+from report.views import ReportCreate
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^articles/', ArticleList.as_view()),
+    url(r'^organizations/', OrganizationList.as_view()),
+    url(r'^persons/', PersonList.as_view()),
+    url(r'^reports/', ReportCreate.as_view()),
 ]
