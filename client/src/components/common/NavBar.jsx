@@ -27,6 +27,7 @@ function NavBar(props) {
       top: 0,
       width: '100%',
       padding: '18px 0',
+      zIndex: 1,
     },
 
     top: {
