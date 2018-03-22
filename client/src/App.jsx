@@ -3,13 +3,10 @@ import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 
 import NavBar from './components/common/NavBar';
 
-import Faculty from './components/Faculty';
-import Organization from './components/Organization';
 import Landing from './components/Landing';
+import Organization from './components/Organization';
 import Report from './components/Report';
-
-const kaistBlue = '#004191';
-const white = '#FFF';
+import Resources from './components/Resources';
 
 class App extends React.Component {
   constructor() {
@@ -29,6 +26,7 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    // eslint-disable-next-line react/prop-types
     const { history, location } = this.props;
     if (
       history.action === 'PUSH' &&
@@ -41,11 +39,10 @@ class App extends React.Component {
   render() {
     const { location } = this.props;
     const { pathname } = location;
-    const isReport = pathname === '/report/' || pathname === '/news/' || pathname === '/faculty/' || pathname === '/orgs/';
-    const isMain = pathname === '/';
+    const isReport = pathname === '/report/';
     return (
-      <div style={{ paddingTop: 60, background: isMain ? kaistBlue : white }}>
-        <NavBar isTop={this.state.isTop && !isReport} isMain={this.state.isTop && isMain}>
+      <div>
+        <NavBar isTop={this.state.isTop && !isReport}>
           <NavBar.Item
             text="Inclusion KAIST"
             link="/"
@@ -59,20 +56,14 @@ class App extends React.Component {
             isTop={this.state.isTop && !isReport}
           />
           <NavBar.Item
-            text="유관기관"
+            text="자료"
+            link="/resources/"
+            right
+            isTop={this.state.isTop && !isReport}
+          />
+          <NavBar.Item
+            text="학내 기구"
             link="/orgs/"
-            right
-            isTop={this.state.isTop && !isReport}
-          />
-          <NavBar.Item
-            text="사람들"
-            link="/faculty/"
-            right
-            isTop={this.state.isTop && !isReport}
-          />
-          <NavBar.Item
-            text="뉴스"
-            link="/news/"
             right
             isTop={this.state.isTop && !isReport}
           />
@@ -87,9 +78,7 @@ class App extends React.Component {
           <Route exact path="/" component={Landing} />
           <Route exact path="/report/" component={Report} />
           <Route exact path="/orgs/" component={Organization} />
-          <Route exact path="/faculty/" component={Faculty} />
-          <Route exact path="/news/" component={Faculty} />
-          <Route exact path="/" component={Landing} />
+          <Route exact path="/resources/" component={Resources} />
           <Redirect from="/" to="/" />
         </Switch>
       </div>

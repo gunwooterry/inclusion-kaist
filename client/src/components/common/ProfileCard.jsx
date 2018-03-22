@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
-import ryuImage from './../../static/ryu.png';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -41,10 +40,12 @@ function ProfileCard(props) {
     nameStyle: {
       margin: '0.2rem',
       fontSize: `${size}rem`,
+      fontWeight: 600,
     },
     posStyle: {
       margin: '0.2rem',
       fontSize: `${size * 0.85}rem`,
+      fontWeight: 300,
     },
   };
 
@@ -61,7 +62,7 @@ function ProfileCard(props) {
       </MediaQuery>
       <MediaQuery query="(min-width: 769px)">
         <div style={styles.boxStyle}>
-          <img style={styles.imageStyle} src={ryuImage} alt="professor" />
+          <img style={styles.imageStyle} src={imagePath} alt="professor" />
           <div style={{ padding: '4px 12px', margin: '0 auto' }}>
             <h3 style={styles.nameStyle}>{name}</h3>
             <p style={styles.posStyle}>{dept}</p>

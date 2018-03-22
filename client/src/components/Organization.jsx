@@ -33,9 +33,32 @@ const renderStaffList = kaistOrgList.map(org => (
   </Column>
 ));
 
+const styles = {
+  row: {
+    textAlign: 'center',
+  },
+  topSection: {
+    paddingTop: '6rem',
+    paddingBottom: '4rem',
+  },
+};
+
 function Organization() {
   return (
     <div>
+      <Section
+        backgroundColor={colors.kaistBlue}
+        style={styles.topSection}
+      >
+        <Row style={styles.row}>
+          <Header
+            text="학내 기구"
+            color={colors.white}
+            size={2.5}
+            centered
+          />
+        </Row>
+      </Section>
       <Section backgroundColor={colors.white}>
         <Row style={{ textAlign: 'center' }}>
           <Header text="National Organization" centered />

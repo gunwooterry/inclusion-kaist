@@ -1,33 +1,35 @@
+import placeholderImage from './images/pby.png';
+
 const facultyList = [
   {
     name: 'Sukyung Ryu',
     dept: 'KAIST SoC',
     position: 'Professor',
-    imagePath: './../../static/ryu.png',
+    imagePath: placeholderImage,
   },
   {
     name: 'Jooyoung Lee',
     dept: 'KAIST SoC',
     position: 'Undergraduate Student',
-    imagePath: './../../static/ryu.png',
+    imagePath: placeholderImage,
   },
   {
     name: 'Gunwoo Kim',
     dept: 'KAIST SoC',
     position: 'Undergraduate Student',
-    imagePath: './../../static/ryu.png',
+    imagePath: placeholderImage,
   },
   {
     name: 'Youngkyu Hong',
     dept: 'KAIST SoC',
     position: 'Undergraduate Student',
-    imagePath: './../../static/ryu.png',
+    imagePath: placeholderImage,
   },
   {
     name: 'Youngkyu Hong',
     dept: 'KAIST SoC',
     position: 'Undergraduate Student',
-    imagePath: './../../static/ryu.png',
+    imagePath: placeholderImage,
   },
 ];
 
