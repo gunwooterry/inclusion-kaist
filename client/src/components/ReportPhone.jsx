@@ -5,15 +5,17 @@ import Section from './common/Section';
 
 const styles = {
   titleStyle: {
-    fontSize: '2.5rem',
-    fontWeight: '600',
+    fontSize: '2rem',
+    fontWeight: '400',
     textAlign: 'left',
   },
   subtitleStyle: {
     color: '#828282',
-    fontSize: '1.8rem',
-    fontWeight: '400',
+    fontSize: '1.5rem',
+    fontWeight: '300',
     textAlign: 'left',
+    marginTop: '0.7rem',
+    marginBottom: '3rem',
   },
   inputStyle: {
     border: '0rem',
@@ -21,6 +23,7 @@ const styles = {
     width: '40%',
     display: 'block',
     fontSize: '1.5rem',
+    fontWeight: '300',
     marginBottom: '2rem',
   },
   buttonStyle: {
@@ -45,12 +48,12 @@ class ReportPhone extends Component {
     return (
       <Section style={{minHeight: '40rem', marginTop: '3.5rem'}}>
         <Row>
-          <h3 style={styles.titleStyle}>
+          <div style={styles.titleStyle}>
             나중에 문제 해결을 위해 연락처를 여쭤 봐도 될까요?
-          </h3>
-          <h3 style={styles.subtitleStyle}>
+          </div>
+          <div style={styles.subtitleStyle}>
             부담이 된다면 남기지 않으셔도 됩니다.
-          </h3>
+          </div>
         </Row>
         <Row>
           <input style={styles.inputStyle} />

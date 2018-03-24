@@ -6,16 +6,17 @@ import Section from './common/Section';
 
 const styles = {
   titleStyle: {
-    fontSize: '2.5rem',
-    fontWeight: '600',
+    fontSize: '2rem',
+    fontWeight: '400',
     textAlign: 'left',
   },
   inputStyle: {
-    border: '0rem',
-    borderBottom: '0.2rem solid #4598ed',
+    border: '0.1rem solid #4598ed',
+    padding: '0.5rem',
     width: '85%',
     display: 'block',
     fontSize: '1.5rem',
+    fontWeight: '300',
     marginBottom: '2rem',
   },
   hiddenStyle: {
@@ -49,6 +50,7 @@ class ReportExplain extends Component {
       <Row>
         <Textarea style={styles.inputStyle}
                   value={this.state.value}
+                  minRows={3}
                   onChange={e => this.setState({value: e.target.value})}
                   placeHolder={'일어난 일에 대해 자세히 설명해 주세요.'}/>
       </Row>
