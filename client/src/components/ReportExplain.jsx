@@ -39,7 +39,7 @@ class ReportExplain extends Component {
   }
   render() {
     return (
-    <Section>
+    <div style={this.props.focus ? null : {opacity: 0.2}} ref={this.props.explainRef} onClick={this.props.focus ? null : this.props.onClickDivHandler}>
       <Section style={{textAlign: 'center'}}>
         <Row>
           <h3 style={styles.titleStyle}>
@@ -52,9 +52,9 @@ class ReportExplain extends Component {
                   value={this.state.value}
                   minRows={3}
                   onChange={e => this.setState({value: e.target.value})}
-                  placeHolder={'일어난 일에 대해 자세히 설명해 주세요.'}/>
+                  placeholder={'일어난 일에 대해 자세히 설명해 주세요.'}/>
       </Row>
-    </Section>
+    </div>
     );
   }
 }

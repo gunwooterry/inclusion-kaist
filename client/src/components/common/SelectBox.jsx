@@ -58,7 +58,7 @@ class SelectBox extends Component {
   render() {
     return (
       <div style={{height: '11rem', width: '100%', position: 'relative'}} >
-        <div style={this.state.onHover || this.props.selected ? { ...styles.boxStyle, backgroundColor: '#4598ed', color: '#FFFFFF' } : styles.boxStyle}
+        <div style={this.props.selected || (this.props.focus && this.state.onHover) ? { ...styles.boxStyle, backgroundColor: '#4598ed', color: '#FFFFFF' } : styles.boxStyle}
              onMouseEnter={this.onMouseEnterHandler}
              onMouseLeave={this.onMouseLeaveHandler}
              onClick={this.props.onClickHandler}>
