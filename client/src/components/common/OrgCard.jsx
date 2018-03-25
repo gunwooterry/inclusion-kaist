@@ -10,21 +10,22 @@ const extraLightBlue = '#F8F8F8';
 function OrgCard(props) {
   const {
     name,
-    number,
     link,
-    imagePath,
-    size,
-    blue,
+    mail,
+    number,
+    location,
+    description,
+    size
   } = props;
 
   const styles = {
     boxStyle: {
-      border: '1px solid #cccccc',
+      border: '1px solid #EEEEEE',
+      boxShadow: '0 0 2px #AAAAAA',
       borderRadius: '0.1rem',
       margin: '15px auto',
       textAlign: 'left',
       verticalAlign: 'top',
-      backgroundColor: blue ? extraLightBlue : white,
     },
     imageStyle: {
       width: '100%',
@@ -42,26 +43,15 @@ function OrgCard(props) {
   };
 
   return (
-    <div>
-      <MediaQuery query="(max-width: 768px)">
-        <div style={{ ...styles.boxStyle, margin: '8px auto' }}>
-          <div style={{ padding: '4px 12px', margin: '0 auto' }}>
-            <h3 style={styles.nameStyle}>{name}</h3>
-            <p style={styles.posStyle}>{number}</p>
-            <a style={styles.posStyle} href={link}>바로가기</a>
-          </div>
-        </div>
-      </MediaQuery>
-      <MediaQuery query="(min-width: 769px)">
-        <div style={styles.boxStyle}>
-          <img style={styles.imageStyle} src={parkImage} alt="professor" />
-          <div style={{ padding: '4px 12px', margin: '0 auto' }}>
-            <h3 style={styles.nameStyle}>{name}</h3>
-            <p style={styles.posStyle}>{number}</p>
-            <a style={styles.posStyle} href={link}>바로가기</a>
-          </div>
-        </div>
-      </MediaQuery>
+    <div style={{ ...styles.boxStyle, margin: '8px auto' }}>
+      <div style={{ padding: '4px 12px', margin: '0 auto' }}>
+        <h3 style={styles.nameStyle}>{name}</h3>
+        <p style={styles.posStyle}>{number}</p>
+        <p style={styles.posStyle}>{mail}</p>
+        <p style={styles.posStyle}>{location}</p>
+        <p style={styles.posStyle}>{description}</p>
+        <a style={styles.posStyle} href={link}>바로가기</a>
+      </div>
     </div>
 
   );
@@ -69,18 +59,20 @@ function OrgCard(props) {
 
 OrgCard.propTypes = {
   name: PropTypes.string,
-  dept: PropTypes.string,
-  position: PropTypes.string,
-  imagePath: PropTypes.string,
-  size: PropTypes.number,
+  link: PropTypes.string,
+  mail: PropTypes.string,
+  number: PropTypes.string,
+  location: PropTypes.string,
+  description: PropTypes.number,
 };
 
 OrgCard.defaultProps = {
-  name: 'Sukyung Ryu',
-  dept: 'KAIST SoC',
-  position: 'Professor',
-  imagePath: './../../static/ryu.png',
-  size: 1.2,
+  name: '인권윤리센터',
+  link: 'https://humanrights.kaist.ac.kr',
+  mail: 'humanrights@kaist.ac.kr',
+  number: '042-350-1004',
+  location: '교육지원동(W8) 1115',
+  description: '인권/성희롱/윤리 관련 상담/처리/예방교육/정책개발',
 };
 
 export default OrgCard;

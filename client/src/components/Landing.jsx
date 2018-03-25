@@ -34,6 +34,7 @@ const styles = {
   topSectionBg: {
     backgroundImage: `url(${headerImage})`,
     backgroundSize: 'cover',
+    backgroundAttachment: 'fixed',
     backgroundPosition: '50%',
   },
   topSection: {

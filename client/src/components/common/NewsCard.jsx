@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ryuImage from './../../static/ryu.png';
 
 const propTypes = {
   title: PropTypes.string.isRequired,
@@ -9,7 +8,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  imagePath: './../../static/ryu.png',
+  imagePath: '',
 };
 
 function NewsCard(props) {
@@ -54,10 +53,10 @@ function NewsCard(props) {
 
   return (
     <div style={styles.boxStyle}>
-      <img style={styles.imageStyle} src={ryuImage} alt="professor" />
+      <img style={styles.imageStyle} alt="professor" />
       <div style={styles.contentStyle}>
         <h3 style={styles.titleStyle}>{title}</h3>
-        <p style={styles.dateStyle}>{date.toISOString().split('T')[0]}</p>
+        <p style={styles.dateStyle}>{"kdk"}</p>
       </div>
     </div>
   );
