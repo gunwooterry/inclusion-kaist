@@ -42,8 +42,8 @@ const styles = {
     paddingBottom: '6rem',
   },
   icon: {
-    width: '8rem',
-    height: '8rem',
+    width: '6rem',
+    height: '6rem',
     marginTop: '2rem',
     marginBottom: '2rem',
   },
@@ -84,7 +84,7 @@ function Landing() {
           </Row>
         </Section>
       </div>
-      <Section backgroundColor={colors.lightBlue}>
+      <Section backgroundColor={colors.white}>
         <Row style={styles.row}>
           <Header text="포용성위원회가 하는 일" centered />
           <div style={styles.container}>
@@ -113,7 +113,7 @@ function Landing() {
           </div>
         </Row>
       </Section>
-      <Section backgroundColor={colors.white}>
+      <Section backgroundColor={colors.lightBlue}>
         <Row style={styles.row}>
           <Header text="사람들" centered />
           <div style={styles.container}>
@@ -121,7 +121,7 @@ function Landing() {
           </div>
         </Row>
       </Section>
-      <Section backgroundColor={colors.lightBlue}>
+      <Section backgroundColor={colors.white}>
         <Row style={styles.row}>
           <Header text="도움 요청하기" centered />
           <div style={styles.container}>

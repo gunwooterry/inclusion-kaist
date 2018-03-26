@@ -34,10 +34,66 @@ const orgList = [
     location: '교육지원동(W8) 1115',
     description: '인권/성희롱/윤리 관련 상담/처리/예방교육/정책개발',
   },
+  {
+    name: '인권윤리센터',
+    link: 'https://humanrights.kaist.ac.kr',
+    mail: 'humanrights@kaist.ac.kr',
+    number: '042-350-1004',
+    location: '교육지원동(W8) 1115',
+    description: '인권/성희롱/윤리 관련 상담/처리/예방교육/정책개발',
+  },
+  {
+    name: '인권윤리센터',
+    link: 'https://humanrights.kaist.ac.kr',
+    mail: 'humanrights@kaist.ac.kr',
+    number: '042-350-1004',
+    location: '교육지원동(W8) 1115',
+    description: '인권/성희롱/윤리 관련 상담/처리/예방교육/정책개발',
+  },
+  {
+    name: '인권윤리센터',
+    link: 'https://humanrights.kaist.ac.kr',
+    mail: 'humanrights@kaist.ac.kr',
+    number: '042-350-1004',
+    location: '교육지원동(W8) 1115',
+    description: '인권/성희롱/윤리 관련 상담/처리/예방교육/정책개발',
+  },
+  {
+    name: '인권윤리센터',
+    link: 'https://humanrights.kaist.ac.kr',
+    mail: 'humanrights@kaist.ac.kr',
+    number: '042-350-1004',
+    location: '교육지원동(W8) 1115',
+    description: '인권/성희롱/윤리 관련 상담/처리/예방교육/정책개발',
+  },
+  {
+    name: '인권윤리센터',
+    link: 'https://humanrights.kaist.ac.kr',
+    mail: 'humanrights@kaist.ac.kr',
+    number: '042-350-1004',
+    location: '교육지원동(W8) 1115',
+    description: '인권/성희롱/윤리 관련 상담/처리/예방교육/정책개발',
+  },
+  {
+    name: '인권윤리센터',
+    link: 'https://humanrights.kaist.ac.kr',
+    mail: 'humanrights@kaist.ac.kr',
+    number: '042-350-1004',
+    location: '교육지원동(W8) 1115',
+    description: '인권/성희롱/윤리 관련 상담/처리/예방교육/정책개발',
+  },
+  {
+    name: '인권윤리센터',
+    link: 'https://humanrights.kaist.ac.kr',
+    mail: 'humanrights@kaist.ac.kr',
+    number: '042-350-1004',
+    location: '교육지원동(W8) 1115',
+    description: '인권/성희롱/윤리 관련 상담/처리/예방교육/정책개발',
+  },
 ];
 
 const renderOrgList = orgList.map(org => (
-  <Column xs="12" sm="4" md="4" lg="4">
+  <Column xs="12" sm="6" md="4" lg="4">
     <OrgCard
       name={org.name}
       link={org.link}
