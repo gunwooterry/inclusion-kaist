@@ -39,22 +39,28 @@ class ReportExplain extends Component {
   }
   render() {
     return (
-    <div style={this.props.focus ? null : {opacity: 0.2}} ref={this.props.explainRef} onClick={this.props.focus ? null : this.props.onClickDivHandler}>
-      <Section style={{textAlign: 'center'}}>
+      <div
+        style={this.props.focus ? null : { opacity: 0.2 }}
+        ref={this.props.explainRef}
+        onClick={this.props.focus ? null : this.props.onClickDivHandler}
+      >
+        <Section style={{ textAlign: 'center' }}>
+          <Row>
+            <h3 style={styles.titleStyle}>
+              일어난 일에 대해 자세히 설명해 주세요.
+            </h3>
+          </Row>
+        </Section>
         <Row>
-          <h3 style={styles.titleStyle}>
-            일어난 일에 대해 자세히 설명해 주세요.
-          </h3>
+          <Textarea
+            style={styles.inputStyle}
+            value={this.state.value}
+            minRows={3}
+            onChange={e => this.setState({value: e.target.value})}
+            placeholder={'일어난 일에 대해 자세히 설명해 주세요.'}
+          />
         </Row>
-      </Section>
-      <Row>
-        <Textarea style={styles.inputStyle}
-                  value={this.state.value}
-                  minRows={3}
-                  onChange={e => this.setState({value: e.target.value})}
-                  placeholder={'일어난 일에 대해 자세히 설명해 주세요.'}/>
-      </Row>
-    </div>
+      </div>
     );
   }
 }

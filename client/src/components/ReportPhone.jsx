@@ -41,12 +41,21 @@ const styles = {
     float: 'left',
     cursor: 'pointer',
   },
+  phone: {
+    minHeight: '40rem',
+    marginTop: '3.5rem',
+  },
 };
 
 class ReportPhone extends Component {
   render() {
+    const { focus } = this.props;
     return (
-      <div style={this.props.focus ? {minHeight: '40rem', marginTop: '3.5rem'} : {opacity: 0.2, minHeight: '40rem', marginTop: '3.5rem'}} ref={this.props.phoneRef} onClick={this.props.focus ? null : this.props.onClickDivHandler}>
+      <div
+        style={Object.assign({}, styles.phone, !focus && { opacity: 0.2 })}
+        ref={this.props.phoneRef}
+        onClick={this.props.focus ? null : this.props.onClickDivHandler}
+      >
         <Row>
           <div style={styles.titleStyle}>
             나중에 문제 해결을 위해 연락처를 여쭤 봐도 될까요?
@@ -57,8 +66,24 @@ class ReportPhone extends Component {
         </Row>
         <Row>
           <input style={styles.inputStyle} />
-          <div style={styles.buttonStyle} onClick={this.props.onSubmit}>제출하기</div>
-          <div style={{ ...styles.buttonStyle, width: '15rem', backgroundColor: '#FFFFFF', color: '#4598ed', marginLeft: '2rem' }} onClick={this.props.onSubmit}>연락처 없이 제출하기</div>
+          <div
+            style={styles.buttonStyle}
+            onClick={this.props.onSubmit}
+          >
+            제출하기
+          </div>
+          <div
+            style={{
+              ...styles.buttonStyle,
+              width: '15rem',
+              backgroundColor: '#FFFFFF',
+              color: '#4598ed',
+              marginLeft: '2rem',
+            }}
+            onClick={this.props.onSubmit}
+          >
+            연락처 없이 제출하기
+          </div>
         </Row>
       </div>
     );

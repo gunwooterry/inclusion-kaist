@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
+
 import parkImage from './../../static/park.png';
 import Column from './Column';
 
@@ -15,7 +16,7 @@ function OrgCard(props) {
     number,
     location,
     description,
-    size
+    size,
   } = props;
 
   const styles = {
