@@ -69,6 +69,7 @@ class Report extends Component {
       duration: 500,
       delay: 100,
       smooth: true,
+      ignoreCancelEvents: true,
     });
   }
   onClickBoxHandler() {
@@ -77,6 +78,7 @@ class Report extends Component {
       delay: 100,
       smooth: true,
       offset: -half,
+      ignoreCancelEvents: true,
     });
   }
   onClickPhoneHandler() {
@@ -85,6 +87,7 @@ class Report extends Component {
       delay: 100,
       smooth: true,
       offset: -half,
+      ignoreCancelEvents: true,
     });
   }
   render() {
