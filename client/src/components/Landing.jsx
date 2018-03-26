@@ -20,7 +20,7 @@ const styles = {
     textAlign: 'center',
   },
   container: {
-    marginTop: '3rem',
+    marginTop: '2rem',
     marginBottom: '2rem',
     overflow: 'auto',
   },
@@ -42,9 +42,9 @@ const styles = {
     paddingBottom: '6rem',
   },
   icon: {
-    width: '6rem',
-    height: '6rem',
-    marginTop: '2rem',
+    width: '7rem',
+    height: '7rem',
+    marginTop: '3rem',
     marginBottom: '2rem',
   },
 };
