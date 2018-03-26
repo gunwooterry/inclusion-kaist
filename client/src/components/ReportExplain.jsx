@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MediaQuery from 'react-responsive';
 import Textarea from 'react-textarea-autosize';
 import Row from './common/Row';
 import Column from './common/Column';
@@ -7,6 +8,11 @@ import Section from './common/Section';
 const styles = {
   titleStyle: {
     fontSize: '2rem',
+    fontWeight: '400',
+    textAlign: 'left',
+  },
+  titleStyleXs: {
+    fontSize: '1.5rem',
     fontWeight: '400',
     textAlign: 'left',
   },
@@ -19,6 +25,15 @@ const styles = {
     fontWeight: '300',
     marginBottom: '2rem',
   },
+  inputStyleXs: {
+    border: '0.1rem solid #4598ed',
+    padding: '0.5rem',
+    width: '95%',
+    display: 'block',
+    fontSize: '1.2rem',
+    fontWeight: '300',
+    marginBottom: '2rem',
+  },
   hiddenStyle: {
     transform: 'translate(100%)',
     display: 'none',
@@ -27,6 +42,36 @@ const styles = {
   showStyle: {
     transform: 'translate(0%)',
     webkitTransition: 'transform 1s ease-in-out',
+  },
+  buttonStyle: {
+    border: '0.15rem solid #4598ed',
+    borderRadius: '0.2rem',
+    width: '5rem',
+    height: '3.5rem',
+    lineHeight: '3.5rem',
+    alignItems: 'inline-block',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    fontWeight: '700',
+    fontSize: '1.2rem',
+    backgroundColor: '#4598ed',
+    float: 'left',
+    cursor: 'pointer',
+  },
+  buttonStyleXs: {
+    border: '0.15rem solid #4598ed',
+    borderRadius: '0.2rem',
+    width: '5rem',
+    height: '2.75rem',
+    lineHeight: '2.75rem',
+    alignItems: 'inline-block',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    fontWeight: '700',
+    fontSize: '1.1rem',
+    backgroundColor: '#4598ed',
+    float: 'left',
+    cursor: 'pointer',
   },
 };
 
@@ -39,18 +84,15 @@ class ReportExplain extends Component {
   }
   render() {
     return (
-      <div
-        style={this.props.focus ? null : { opacity: 0.2 }}
-        ref={this.props.explainRef}
-        onClick={this.props.focus ? null : this.props.onClickDivHandler}
-      >
-        <Section style={{ textAlign: 'center' }}>
+    <div style={this.props.focus ? {height: '40vh', paddingTop: '10px'} : {height: '40vh', opacity: 0.2, paddingTop: '10px'}} ref={this.props.explainRef} onClick={this.props.focus ? null : this.props.onClickDivHandler}>
+      <MediaQuery query="(min-width: 768px)">
+        <div style={{textAlign: 'center', marginBottom: '20px'}}>
           <Row>
             <h3 style={styles.titleStyle}>
               일어난 일에 대해 자세히 설명해 주세요.
             </h3>
           </Row>
-        </Section>
+        </div>
         <Row>
           <Textarea
             style={styles.inputStyle}
@@ -60,7 +102,28 @@ class ReportExplain extends Component {
             placeholder={'일어난 일에 대해 자세히 설명해 주세요.'}
           />
         </Row>
-      </div>
+      </MediaQuery>
+
+      <MediaQuery query="(max-width: 768px)">
+        <div style={{textAlign: 'center', marginBottom: '20px'}}>
+          <Row>
+            <h3 style={styles.titleStyleXs}>
+              일어난 일에 대해 자세히 설명해 주세요.
+            </h3>
+          </Row>
+        </div>
+        <Row>
+        <Textarea style={styles.inputStyleXs}
+                  value={this.state.value}
+                  minRows={5}
+                  onChange={e => this.setState({value: e.target.value})}
+                  placeholder={'일어난 일에 대해 자세히 설명해 주세요.'}/>
+        </Row>
+        <Row>
+        <div style={styles.buttonStyleXs} onClick={this.props.onNext}>다음</div>
+        </Row>
+      </MediaQuery>
+    </div>
     );
   }
 }

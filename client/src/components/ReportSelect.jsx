@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MediaQuery from 'react-responsive';
 
 import Row from './common/Row';
 import Column from './common/Column';
@@ -9,11 +10,20 @@ import SelectBox from './common/SelectBox';
 const styles = {
   titleStyle: {
     fontSize: '3rem',
+    fontWeight: 600,
   },
   subtitleStyle: {
     color: '#828282',
     margin: '2rem 0 2rem 0',
     fontSize: '2rem',
+  },
+  titleStyleXs: {
+    fontSize: '2rem',
+  },
+  subtitleStyleXs: {
+    color: '#828282',
+    margin: '1rem 0 0 0',
+    fontSize: '1.5rem',
   },
 };
 
@@ -32,35 +42,37 @@ class ReportSelect extends Component{
   }
   render() {
     return (
-      <div style={this.props.focus ? null : {opacity: 0.2}} ref={this.props.selectRef} onClick={this.props.focus ? null : this.props.onClickDivHandler}>
-        <Section style={{textAlign: 'center'}}>
-          <Row>
-            <h1 style={styles.titleStyle}>약간의 용기가 삶을 바꿉니다.</h1>
-            <h3 style={styles.subtitleStyle}>어떤 문제를 겪고 계신가요?</h3>
-          </Row>
-        </Section>
-        <Section style={{margin: 'auto'}}>
-          <Row>
-            <Column xs="6" sm="6" md="4" lg="4">
-              <SelectBox focus={this.props.focus} text="신체적 폭력" selected={this.state.selected === 0} onClickHandler={() => this.onClickHandler(0)} />
-            </Column>
-            <Column xs="6" sm="6" md="4" lg="4">
-              <SelectBox focus={this.props.focus} text="제도적 차별" selected={this.state.selected === 1} onClickHandler={() => this.onClickHandler(1)} />
-            </Column>
-            <Column xs="6" sm="6" md="4" lg="4">
-              <SelectBox focus={this.props.focus} text="권력형 인권침해" selected={this.state.selected === 2} onClickHandler={() => this.onClickHandler(2)} />
-            </Column>
-            <Column xs="6" sm="6" md="4" lg="4">
-              <SelectBox focus={this.props.focus} text="혐오 발언" selected={this.state.selected === 3} onClickHandler={() => this.onClickHandler(3)} />
-            </Column>
-            <Column xs="6" sm="6" md="4" lg="4">
-              <SelectBox focus={this.props.focus} text="또 뭐가 있을까요" selected={this.state.selected === 4} onClickHandler={() => this.onClickHandler(4)} />
-            </Column>
-            <Column xs="6" sm="6" md="4" lg="4">
-              <SelectBox focus={this.props.focus} text="기타" selected={this.state.selected === 5} onClickHandler={() => this.onClickHandler(5)} />
-            </Column>
-          </Row>
-        </Section>
+      <div style={this.props.focus ? styles.divStyle : {...styles.divStyle, opacity: 0.2}} ref={this.props.selectRef} onClick={this.props.focus ? null : this.props.onClickDivHandler}>
+        <div style={{top: '50%', width: '100%'}}>
+          <div style={{textAlign: 'center'}}>
+
+            <MediaQuery query="(min-width: 768px)">
+              <div>
+                <div style={styles.titleStyle}>약간의 용기가 삶을 바꿉니다.</div>
+                <div style={styles.subtitleStyle}>어떤 도움이 필요하신가요?</div>
+              </div>
+            </MediaQuery>
+            <MediaQuery query="(max-width: 768px)">
+              <Row>
+                <h1 style={styles.titleStyleXs}>약간의 용기가 삶을 바꿉니다.</h1>
+                <h3 style={styles.subtitleStyleXs}>어떤 도움이 필요하신가요?</h3>
+              </Row>
+            </MediaQuery>
+          </div>
+          <Section style={{margin: 'auto'}}>
+            <Row>
+              <Column xs="12" sm="4" md="4" lg="4">
+                <SelectBox focus={this.props.focus} text="사건을 제보할래요" selected={this.state.selected === 0} onClickHandler={() => this.onClickHandler(0)} />
+              </Column>
+              <Column xs="12" sm="4" md="4" lg="4">
+                <SelectBox focus={this.props.focus} text="상담받고 싶어요" selected={this.state.selected === 1} onClickHandler={() => this.onClickHandler(1)} />
+              </Column>
+              <Column xs="12" sm="4" md="4" lg="4">
+                <SelectBox focus={this.props.focus} text="대화상대가 필요해요" selected={this.state.selected === 2} onClickHandler={() => this.onClickHandler(2)} />
+              </Column>
+            </Row>
+          </Section>
+        </div>
       </div>
     );
   }

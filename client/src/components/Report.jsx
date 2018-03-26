@@ -20,7 +20,7 @@ const styles = {
     cursor: 'pointer',
   },
   divStyle: {
-    marginTop: 100,
+    marginTop: '100px',
     overflow: 'auto',
     scrollSnapType: 'y mandatory',
   },
@@ -54,7 +54,7 @@ class Report extends Component {
     // const explainPos = this.explainNode.getBoundingClientRect();
     // let scrollPos = window.scrollY;
     const phonePos = this.phoneNode.getBoundingClientRect();
-    const selectFocus = selectPos.y > -selectPos.height / 2;
+    const selectFocus = selectPos.y > -selectPos.height / 3;
     const phoneFocus = phonePos.y < lastQuater && phonePos.y > -phonePos.height / 2;
     this.setState({
       selectFocus,
@@ -111,6 +111,7 @@ class Report extends Component {
               onClickHandler={() => this.onClickBoxHandler()}
               explainRef={(node) => { this.explainNode = node; }}
               onClickDivHandler={this.onClickBoxHandler}
+              onNext={this.onClickPhoneHandler}
             />
           </Element>
           <Element name="reportPhone">
