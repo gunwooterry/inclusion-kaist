@@ -9,7 +9,7 @@ import Header from './common/Header';
 import Row from './common/Row';
 import Section from './common/Section';
 
-const { Element, scroller, animateScroll } = Scroll;
+const { Element, scroller } = Scroll;
 const half = window.innerHeight * 0.3;
 const lastQuater = window.innerHeight * 0.55;
 
@@ -58,16 +58,26 @@ const styles = {
   translucent: {
     opacity: 0.2,
   },
-  selectBox: {
+  option: {
+    width: '100%',
     margin: '8px auto 8px',
+    backgroundColor: 'transparent',
+    borderWidth: 0,
     textAlign: 'center',
     verticalAlign: 'top',
-    padding: '19px 20px',
+    padding: '25px 20px',
     boxShadow: '0 2px 6px rgba(0, 0, 0, 0.25)',
+    outline: 'none',
+    cursor: 'pointer',
   },
-  selectBoxText: {
+  optionText: {
     fontSize: '1.5rem',
     fontWeight: 400,
+  },
+  selected: {
+    backgroundColor: colors.kaistBlue,
+    color: colors.white,
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.25)',
   },
   textarea: {
     borderColor: colors.gray,
@@ -103,6 +113,7 @@ class Report extends Component {
     super();
     this.state = {
       focus: 'select',
+      reportType: -1,
       phoneNumber: '',
     };
     this.handleScroll = this.handleScroll.bind(this);
@@ -139,7 +150,7 @@ class Report extends Component {
   }
 
   render() {
-    const { focus, phoneNumber } = this.state;
+    const { focus, reportType, phoneNumber } = this.state;
     const reportOptions = [
       { id: 1, text: '사건을 제보할래요' },
       { id: 2, text: '상담을 받고 싶어요' },
@@ -175,9 +186,20 @@ class Report extends Component {
               <div style={styles.container}>
                 {reportOptions.map(option => (
                   <Column xs={12} sm={4} md={4} lg={4} key={option.id}>
-                    <div style={styles.selectBox}>
-                      <h3 style={styles.selectBoxText}>{option.text}</h3>
-                    </div>
+                    <button
+                      style={Object.assign(
+                        {},
+                        styles.option,
+                        reportType === option.id && styles.selected,
+                      )}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        this.setState({ reportType: option.id });
+                        scrollToElement('explain');
+                      }}
+                    >
+                      <h1 style={styles.optionText}>{option.text}</h1>
+                    </button>
                   </Column>
                 ))}
               </div>
