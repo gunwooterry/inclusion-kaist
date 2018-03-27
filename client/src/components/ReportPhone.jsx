@@ -80,15 +80,24 @@ const styles = {
     float: 'left',
     cursor: 'pointer',
   },
+  divStyle: {
+    paddingTop: '7rem',
+    paddingBottom: '10rem',
+  },
+  divStyleXs: {
+    paddingTop: '4rem',
+    paddingBottom: '7rem',
+  },
 };
 
 class ReportPhone extends Component {
   render() {
     const { focus } = this.props;
     return (
-      <div style={this.props.focus ? {minHeight: '40rem', marginTop: '3.5rem'} : {opacity: 0.2, minHeight: '40rem', marginTop: '3.5rem'}} ref={this.props.phoneRef} onClick={this.props.focus ? null : this.props.onClickDivHandler}>
+      <div ref={this.props.phoneRef} onClick={this.props.focus ? null : this.props.onClickDivHandler}>
         <MediaQuery query="(min-width: 768px)">
-          <Row>
+          <div style={this.props.focus ? styles.divStyle : {...styles.divStyle, opacity: 0.2}} ref={this.props.phoneRef}>
+            <Row>
             <div style={styles.titleStyle}>
               나중에 문제 해결을 위해 연락처를 여쭤 봐도 될까요?
             </div>
@@ -100,10 +109,12 @@ class ReportPhone extends Component {
             <input style={styles.inputStyle} />
             <div style={styles.buttonStyle} onClick={this.props.onSubmit}>제출하기</div>
           </Row>
+          </div>
         </MediaQuery>
 
         <MediaQuery query="(max-width: 768px)">
-          <Row>
+          <div style={this.props.focus ? styles.divStyleXs : {...styles.divStyleXs, opacity: 0.2}}>
+            <Row>
             <div style={styles.titleStyleXs}>
               나중에 문제 해결을 위해 연락처를 여쭤 봐도 될까요?
             </div>
@@ -117,6 +128,7 @@ class ReportPhone extends Component {
           <Row>
             <div style={styles.buttonStyleXs} onClick={this.props.onSubmit}>제출하기</div>
           </Row>
+          </div>
         </MediaQuery>
       </div>
     );

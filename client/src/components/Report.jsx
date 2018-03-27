@@ -8,9 +8,9 @@ import ReportDone from './ReportDone';
 import Column from './common/Column';
 import Row from './common/Row';
 
-const { Element, scroller } = Scroll;
-const half = window.innerHeight / 4;
-const lastQuater = (window.innerHeight * 2.5) / 4;
+const { Element, scroller, animateScroll } = Scroll;
+const half = window.innerHeight * 1.2 / 4;
+const lastQuater = (window.innerHeight * 2.2) / 4;
 
 const styles = {
   arrowStyle: {
@@ -64,7 +64,13 @@ class Report extends Component {
   }
 
   onClickDivHandler() {
-    scroller.scrollTo('reportSelect', {
+    // scroller.scrollTo('reportSelect', {
+    //   duration: 500,
+    //   delay: 100,
+    //   smooth: true,
+    //   ignoreCancelEvents: true,
+    // });
+    animateScroll.scrollToTop({
       duration: 500,
       delay: 100,
       smooth: true,
@@ -101,7 +107,7 @@ class Report extends Component {
             <ReportSelect
               focus={this.state.selectFocus}
               onClickHandler={this.onClickBoxHandler}
-              selectRef={(node) => { this.selectNode = node; }}
+              selectRef={(node) => { if (node) this.selectNode = node; }}
               onClickDivHandler={this.onClickDivHandler}
             />
           </Element>
@@ -109,7 +115,7 @@ class Report extends Component {
             <ReportExplain
               focus={this.state.explainFocus}
               onClickHandler={() => this.onClickBoxHandler()}
-              explainRef={(node) => { this.explainNode = node; }}
+              explainRef={(node) => { if (node) this.explainNode = node; }}
               onClickDivHandler={this.onClickBoxHandler}
               onNext={this.onClickPhoneHandler}
             />
@@ -118,7 +124,7 @@ class Report extends Component {
             <ReportPhone
               focus={this.state.phoneFocus}
               onSubmit={() => this.onSubmit()}
-              phoneRef={(node) => { this.phoneNode = node; }}
+              phoneRef={(node) => { if (node) this.phoneNode = node; }}
               onClickDivHandler={this.onClickPhoneHandler}
             />
           </Element>

@@ -25,6 +25,10 @@ const styles = {
     margin: '1rem 0 0 0',
     fontSize: '1.5rem',
   },
+  divStyle: {
+    paddingTop: '7vh',
+    paddingBottom: '3vh',
+  },
 };
 
 class ReportSelect extends Component{
@@ -42,37 +46,53 @@ class ReportSelect extends Component{
   }
   render() {
     return (
-      <div style={this.props.focus ? styles.divStyle : {...styles.divStyle, opacity: 0.2}} ref={this.props.selectRef} onClick={this.props.focus ? null : this.props.onClickDivHandler}>
-        <div style={{top: '50%', width: '100%'}}>
-          <div style={{textAlign: 'center'}}>
-
-            <MediaQuery query="(min-width: 768px)">
+      <div ref={this.props.selectRef} onClick={this.props.focus ? null : this.props.onClickDivHandler}>
+        <MediaQuery query="(min-width: 768px)">
+          <div style={this.props.focus ? styles.divStyle : {...styles.divStyle, opacity: 0.2}}>
+            <div style={{textAlign: 'center'}}>
               <div>
                 <div style={styles.titleStyle}>약간의 용기가 삶을 바꿉니다.</div>
                 <div style={styles.subtitleStyle}>어떤 도움이 필요하신가요?</div>
               </div>
-            </MediaQuery>
-            <MediaQuery query="(max-width: 768px)">
+            </div>
+            <Section style={{margin: 'auto'}}>
+              <Row>
+                <Column xs="12" sm="4" md="4" lg="4">
+                  <SelectBox focus={this.props.focus} text="사건을 제보할래요" selected={this.state.selected === 0} onClickHandler={() => this.onClickHandler(0)} />
+                </Column>
+                <Column xs="12" sm="4" md="4" lg="4">
+                  <SelectBox focus={this.props.focus} text="상담받고 싶어요" selected={this.state.selected === 1} onClickHandler={() => this.onClickHandler(1)} />
+                </Column>
+                <Column xs="12" sm="4" md="4" lg="4">
+                  <SelectBox focus={this.props.focus} text="대화상대가 필요해요" selected={this.state.selected === 2} onClickHandler={() => this.onClickHandler(2)} />
+                </Column>
+              </Row>
+            </Section>
+          </div>
+        </MediaQuery>
+        <MediaQuery query="(max-width: 768px)">
+          <div style={this.props.focus ? styles.divStyleXs : {...styles.divStyleXs, opacity: 0.2}}>
+            <div style={{textAlign: 'center'}}>
               <Row>
                 <h1 style={styles.titleStyleXs}>약간의 용기가 삶을 바꿉니다.</h1>
                 <h3 style={styles.subtitleStyleXs}>어떤 도움이 필요하신가요?</h3>
               </Row>
-            </MediaQuery>
+            </div>
+            <Section style={{margin: 'auto'}}>
+              <Row>
+                <Column xs="12" sm="4" md="4" lg="4">
+                  <SelectBox focus={this.props.focus} text="사건을 제보할래요" selected={this.state.selected === 0} onClickHandler={() => this.onClickHandler(0)} />
+                </Column>
+                <Column xs="12" sm="4" md="4" lg="4">
+                  <SelectBox focus={this.props.focus} text="상담받고 싶어요" selected={this.state.selected === 1} onClickHandler={() => this.onClickHandler(1)} />
+                </Column>
+                <Column xs="12" sm="4" md="4" lg="4">
+                  <SelectBox focus={this.props.focus} text="대화상대가 필요해요" selected={this.state.selected === 2} onClickHandler={() => this.onClickHandler(2)} />
+                </Column>
+              </Row>
+            </Section>
           </div>
-          <Section style={{margin: 'auto'}}>
-            <Row>
-              <Column xs="12" sm="4" md="4" lg="4">
-                <SelectBox focus={this.props.focus} text="사건을 제보할래요" selected={this.state.selected === 0} onClickHandler={() => this.onClickHandler(0)} />
-              </Column>
-              <Column xs="12" sm="4" md="4" lg="4">
-                <SelectBox focus={this.props.focus} text="상담받고 싶어요" selected={this.state.selected === 1} onClickHandler={() => this.onClickHandler(1)} />
-              </Column>
-              <Column xs="12" sm="4" md="4" lg="4">
-                <SelectBox focus={this.props.focus} text="대화상대가 필요해요" selected={this.state.selected === 2} onClickHandler={() => this.onClickHandler(2)} />
-              </Column>
-            </Row>
-          </Section>
-        </div>
+        </MediaQuery>
       </div>
     );
   }

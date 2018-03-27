@@ -84,46 +84,56 @@ class ReportExplain extends Component {
   }
   render() {
     return (
-    <div style={this.props.focus ? {height: '40vh', paddingTop: '10px'} : {height: '40vh', opacity: 0.2, paddingTop: '10px'}} ref={this.props.explainRef} onClick={this.props.focus ? null : this.props.onClickDivHandler}>
-      <MediaQuery query="(min-width: 768px)">
-        <div style={{textAlign: 'center', marginBottom: '20px'}}>
-          <Row>
-            <h3 style={styles.titleStyle}>
-              일어난 일에 대해 자세히 설명해 주세요.
-            </h3>
-          </Row>
-        </div>
-        <Row>
-          <Textarea
-            style={styles.inputStyle}
-            value={this.state.value}
-            minRows={3}
-            onChange={e => this.setState({value: e.target.value})}
-            placeholder={'일어난 일에 대해 자세히 설명해 주세요.'}
-          />
-        </Row>
-      </MediaQuery>
-
-      <MediaQuery query="(max-width: 768px)">
-        <div style={{textAlign: 'center', marginBottom: '20px'}}>
-          <Row>
-            <h3 style={styles.titleStyleXs}>
-              일어난 일에 대해 자세히 설명해 주세요.
-            </h3>
-          </Row>
-        </div>
-        <Row>
-        <Textarea style={styles.inputStyleXs}
-                  value={this.state.value}
-                  minRows={5}
-                  onChange={e => this.setState({value: e.target.value})}
-                  placeholder={'일어난 일에 대해 자세히 설명해 주세요.'}/>
-        </Row>
-        <Row>
-        <div style={styles.buttonStyleXs} onClick={this.props.onNext}>다음</div>
-        </Row>
-      </MediaQuery>
-    </div>
+      <div
+        ref={this.props.explainRef}
+        onClick={this.props.focus ? null : this.props.onClickDivHandler}>
+        <MediaQuery query="(min-width: 768px)">
+          <div style={this.props.focus ? {} : {opacity: 0.2}}>
+            <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+              <Row>
+                <h3 style={styles.titleStyle}>
+                  일어난 일에 대해 자세히 설명해 주세요.
+                </h3>
+              </Row>
+            </div>
+            <Row>
+              <Textarea
+                style={styles.inputStyle}
+                value={this.state.value}
+                minRows={3}
+                onChange={e => this.setState({value: e.target.value})}
+                placeholder={'일어난 일에 대해 자세히 설명해 주세요.'}
+              />
+            </Row>
+            <Row>
+              <div style={styles.buttonStyle} onClick={this.props.onNext}>다음</div>
+            </Row>
+          </div>
+        </MediaQuery>
+        <MediaQuery query="(max-width: 768px)">
+          <div style={this.props.focus ? {} : {opacity: 0.2}}>
+            <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+              <Row>
+                <h3 style={styles.titleStyleXs}>
+                  일어난 일에 대해 자세히 설명해 주세요.
+                </h3>
+              </Row>
+            </div>
+            <Row>
+              <Textarea
+                style={styles.inputStyleXs}
+                value={this.state.value}
+                minRows={5}
+                maxRows={10}
+                onChange={e => this.setState({value: e.target.value})}
+                placeholder={'일어난 일에 대해 자세히 설명해 주세요.'}/>
+            </Row>
+            <Row>
+              <div style={styles.buttonStyleXs} onClick={this.props.onNext}>다음</div>
+            </Row>
+          </div>
+        </MediaQuery>
+      </div>
     );
   }
 }
