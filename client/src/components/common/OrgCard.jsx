@@ -1,17 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MediaQuery from 'react-responsive';
 import MdLocalPhone from 'react-icons/lib/md/local-phone';
 import MdMailOutline from 'react-icons/lib/md/mail-outline';
 import MdLocationOn from 'react-icons/lib/md/location-on';
 
-import parkImage from './../../static/park.png';
-import Column from './Column';
 import { colors } from '../../static/constants';
 import SmallButton from './SmallButton';
-
-const white = '#FFF';
-const extraLightBlue = '#F8F8F8';
 
 function OrgCard(props) {
   const {
@@ -21,38 +15,35 @@ function OrgCard(props) {
     number,
     location,
     description,
-    size,
   } = props;
 
   const styles = {
-    boxStyle: {
-      border: '1px solid #EEEEEE',
-      boxShadow: '0 0 2px #AAAAAA',
-      borderRadius: '0.1rem',
-      margin: '25px auto',
+    box: {
+      margin: '8px auto 20px',
       textAlign: 'left',
       verticalAlign: 'top',
-      padding: '15px 8px'
+      padding: '15px 8px',
+      boxShadow: '0 2px 6px rgba(0, 0, 0, 0.25)',
     },
-    imageStyle: {
+    image: {
       width: '100%',
       height: '15rem',
       objectFit: 'cover',
     },
-    nameStyle: {
-      margin: '0.2rem 0 1rem 0',
-      fontSize: `1.5rem`,
+    name: {
+      margin: '0.2rem 0 1rem 0.3rem',
+      fontSize: '1.5rem',
     },
-    posStyle: {
+    pos: {
       margin: '0.2rem 0.3rem 0.5rem 0.3rem',
-      fontSize: `0.8rem`,
+      fontSize: '0.9rem',
     },
-    contentStyle: {
+    content: {
       margin: '0.2rem 0.3rem 0.5rem 0.3rem',
-      fontSize: `1.1rem`,
+      fontSize: '1.1rem',
       minHeight: '5rem',
     },
-    buttonStyle: {
+    button: {
       alignSelf: 'center',
       textAlign: 'right',
       margin: '1.5rem 0 0.2rem 0',
@@ -60,14 +51,14 @@ function OrgCard(props) {
   };
 
   return (
-    <div style={{ ...styles.boxStyle, margin: '8px auto 20px auto' }}>
+    <div style={styles.box}>
       <div style={{ padding: '4px 12px', margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', display: 'block'}}><h3 style={styles.nameStyle}>{name}</h3></div>
-        <p style={styles.contentStyle}>{description}</p>
-        <p style={styles.posStyle}><MdLocalPhone />{"  " + number}</p>
-        <p style={styles.posStyle}><MdMailOutline />{"  " + mail}</p>
-        <p style={styles.posStyle}><MdLocationOn />{"  " + location}</p>
-        <div style={styles.buttonStyle}>
+        <h3 style={styles.name}>{name}</h3>
+        <p style={styles.content}>{description}</p>
+        <p style={styles.pos}><MdLocalPhone /> {number}</p>
+        <p style={styles.pos}><MdMailOutline /> {mail}</p>
+        <p style={styles.pos}><MdLocationOn /> {location}</p>
+        <div style={styles.button}>
           <SmallButton link={link} color={colors.kaistBlue}>
             바로가기
           </SmallButton>
