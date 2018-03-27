@@ -20,9 +20,8 @@ function OrgCard(props) {
   const styles = {
     box: {
       margin: '8px auto 20px',
-      textAlign: 'left',
       verticalAlign: 'top',
-      padding: '15px 8px',
+      padding: '19px 20px',
       boxShadow: '0 2px 6px rgba(0, 0, 0, 0.25)',
     },
     image: {
@@ -52,17 +51,15 @@ function OrgCard(props) {
 
   return (
     <div style={styles.box}>
-      <div style={{ padding: '4px 12px', margin: '0 auto' }}>
-        <h3 style={styles.name}>{name}</h3>
-        <p style={styles.content}>{description}</p>
-        <p style={styles.pos}><MdLocalPhone /> {number}</p>
-        <p style={styles.pos}><MdMailOutline /> {mail}</p>
-        <p style={styles.pos}><MdLocationOn /> {location}</p>
-        <div style={styles.button}>
-          <SmallButton link={link} color={colors.kaistBlue}>
-            바로가기
-          </SmallButton>
-        </div>
+      <h3 style={styles.name}>{name}</h3>
+      <p style={styles.content}>{description}</p>
+      <p style={styles.pos}><MdLocalPhone /> {number}</p>
+      <p style={styles.pos}><MdMailOutline /> {mail}</p>
+      <p style={styles.pos}><MdLocationOn /> {location}</p>
+      <div style={styles.button}>
+        <SmallButton link={link} color={colors.kaistBlue}>
+          바로가기
+        </SmallButton>
       </div>
     </div>
 

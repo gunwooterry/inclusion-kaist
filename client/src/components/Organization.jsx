@@ -106,7 +106,7 @@ const renderOrgList = orgList.map(org => (
 ));
 
 const styles = {
-  row: {
+  centered: {
     textAlign: 'center',
   },
   topSection: {
@@ -114,7 +114,7 @@ const styles = {
     paddingBottom: '4rem',
   },
   container: {
-    marginTop: '3rem',
+    marginTop: '2rem',
     marginBottom: '2rem',
     overflow: 'auto',
   },
@@ -134,7 +134,7 @@ function Organization() {
         backgroundColor={colors.kaistBlue}
         style={styles.topSection}
       >
-        <Row style={styles.row}>
+        <Row style={styles.centered}>
           <Header
             text="학내 기구"
             color={colors.white}
@@ -144,7 +144,7 @@ function Organization() {
         </Row>
       </Section>
       <Section backgroundColor={colors.white}>
-        <Row style={{ textAlign: 'center' }}>
+        <Row style={styles.centered}>
           <Header text="학내기구 목록" centered />
           <div style={styles.container}>
             <p style={styles.paragraph}>
@@ -155,7 +155,7 @@ function Organization() {
         </Row>
       </Section>
       <Section backgroundColor={colors.lightBlue}>
-        <Row style={styles.row}>
+        <Row style={styles.centered}>
           <Header text="익명으로 신고하기" centered />
           <div style={styles.container}>
             <p style={styles.paragraph}>

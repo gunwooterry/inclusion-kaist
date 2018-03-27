@@ -5,40 +5,43 @@ const propTypes = {
   backgroundColor: PropTypes.string,
   style: PropTypes.shape({}),
   children: PropTypes.node,
+  reference: PropTypes.func,
 };
 
 const defaultProps = {
   backgroundColor: '#FFF',
   style: {},
   children: '',
+  reference: undefined,
 };
 
 function Section(props) {
   const {
     backgroundColor,
     children,
+    style,
+    reference,
   } = props;
 
-  const styles = {
-    section: {
-      width: '100%',
-      backgroundColor,
-      paddingTop: '2rem',
-      paddingBottom: '3rem',
-      clear: 'both',
-      margin: '0px',
-    },
+  const sectionStyle = {
+    width: '100%',
+    backgroundColor,
+    paddingTop: '2rem',
+    paddingBottom: '3rem',
+    clear: 'both',
+    margin: '0px',
   };
 
-  const style = Object.assign(
+  const divStyle = Object.assign(
     {},
-    styles.section,
-    props.style,
+    sectionStyle,
+    style,
   );
 
   return (
     <div
-      style={style}
+      style={divStyle}
+      ref={reference}
     >
       {children}
     </div>
