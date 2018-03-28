@@ -138,7 +138,7 @@ class Report extends Component {
     const phonePos = this.phoneNode.getBoundingClientRect();
 
     let newFocus = 'explain';
-    if (selectPos.y > -selectPos.height / 3) {
+    if (selectPos.y > -selectPos.height / 4) {
       newFocus = 'select';
     } else if (phonePos.y < lastQuater && phonePos.y > -phonePos.height / 2) {
       newFocus = 'phone';
@@ -192,12 +192,12 @@ class Report extends Component {
                         styles.option,
                         reportType === option.id && styles.selected,
                       )}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        this.setState({ reportType: option.id });
-                        scrollToElement('explain');
-                      }}
-                    >
+                      onClick={this.state.focus === 'select' ?
+                          (event) => {
+                            event.stopPropagation();
+                            this.setState({ reportType: option.id });
+                            scrollToElement('explain');
+                          } : null}>
                       <h1 style={styles.optionText}>{option.text}</h1>
                     </button>
                   </Column>
