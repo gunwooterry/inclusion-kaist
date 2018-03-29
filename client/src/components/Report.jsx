@@ -13,6 +13,10 @@ const { Element, scroller } = Scroll;
 const half = window.innerHeight * 0.3;
 const lastQuater = window.innerHeight * 0.55;
 
+const SELECT = 'select';
+const EXPLAIN = 'explain';
+const PHONE = 'phone';
+
 const scrollToElement = (name) => {
   scroller.scrollTo(name, {
     duration: 500,
@@ -41,8 +45,8 @@ const styles = {
     textAlign: 'center',
   },
   topSection: {
-    paddingTop: '8rem',
-    paddingBottom: '4rem',
+    paddingTop: '10rem',
+    paddingBottom: '6rem',
   },
   section: {
     padding: '4rem 0',
@@ -55,8 +59,9 @@ const styles = {
     marginBottom: '2rem',
     overflow: 'auto',
   },
-  translucent: {
+  unfocused: {
     opacity: 0.2,
+    cursor: 'pointer',
   },
   option: {
     width: '100%',
@@ -80,7 +85,7 @@ const styles = {
     boxShadow: '0 2px 8px rgba(0, 0, 0, 0.25)',
   },
   textarea: {
-    borderColor: colors.gray,
+    borderColor: colors.kaistBlue,
     borderWidth: 1,
     padding: '0.8rem',
     fontSize: '1.2rem',
@@ -97,7 +102,7 @@ const styles = {
   },
   phoneInput: {
     borderWidth: 0,
-    borderBottomColor: colors.gray,
+    borderBottomColor: colors.kaistBlue,
     borderBottomWidth: 1,
     padding: '0.5rem',
     fontSize: '1.5rem',
@@ -112,7 +117,7 @@ class Report extends Component {
   constructor() {
     super();
     this.state = {
-      focus: 'select',
+      focus: SELECT,
       reportType: -1,
       phoneNumber: '',
     };
@@ -127,6 +132,14 @@ class Report extends Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
+  onSelectOption(event, id) {
+    if (this.state.focus === SELECT) {
+      event.stopPropagation();
+      this.setState({ reportType: id });
+      scrollToElement(EXPLAIN);
+    }
+  }
+
   // eslint-disable-next-line class-methods-use-this
   onSubmit() {
     // add http request
@@ -137,11 +150,11 @@ class Report extends Component {
     const selectPos = this.selectNode.getBoundingClientRect();
     const phonePos = this.phoneNode.getBoundingClientRect();
 
-    let newFocus = 'explain';
+    let newFocus = EXPLAIN;
     if (selectPos.y > -selectPos.height / 4) {
-      newFocus = 'select';
+      newFocus = SELECT;
     } else if (phonePos.y < lastQuater && phonePos.y > -phonePos.height / 2) {
-      newFocus = 'phone';
+      newFocus = PHONE;
     }
 
     if (focus !== newFocus) {
@@ -174,8 +187,8 @@ class Report extends Component {
         </Section>
         <Element
           name="select"
-          style={Object.assign({}, focus !== 'select' && styles.translucent)}
-          onClick={() => scrollToElement('select')}
+          style={{ ...focus !== SELECT && styles.unfocused }}
+          onClick={() => scrollToElement(SELECT)}
         >
           <Section
             style={styles.section}
@@ -187,17 +200,9 @@ class Report extends Component {
                 {reportOptions.map(option => (
                   <Column xs={12} sm={4} md={4} lg={4} key={option.id}>
                     <button
-                      style={Object.assign(
-                        {},
-                        styles.option,
-                        reportType === option.id && styles.selected,
-                      )}
-                      onClick={this.state.focus === 'select' ?
-                          (event) => {
-                            event.stopPropagation();
-                            this.setState({ reportType: option.id });
-                            scrollToElement('explain');
-                          } : null}>
+                      style={{ ...styles.option, ...reportType === option.id && styles.selected }}
+                      onClick={event => this.onSelectOption(event, option.id)}
+                    >
                       <h1 style={styles.optionText}>{option.text}</h1>
                     </button>
                   </Column>
@@ -207,9 +212,9 @@ class Report extends Component {
           </Section>
         </Element>
         <Element
-          name="explain"
-          style={Object.assign({}, focus !== 'explain' && styles.translucent)}
-          onClick={() => scrollToElement('explain')}
+          name={EXPLAIN}
+          style={{ ...focus !== EXPLAIN && styles.unfocused }}
+          onClick={() => scrollToElement(EXPLAIN)}
         >
           <Section
             style={styles.section}
@@ -229,8 +234,8 @@ class Report extends Component {
         </Element>
         <Element
           name="phone"
-          style={Object.assign({}, focus !== 'phone' && styles.translucent)}
-          onClick={() => scrollToElement('phone')}
+          style={{ ...focus !== PHONE && styles.unfocused }}
+          onClick={() => scrollToElement(PHONE)}
         >
           <Section
             style={styles.section}
