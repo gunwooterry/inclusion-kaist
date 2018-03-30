@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Header from './common/Header';
 import Section from './common/Section';
@@ -171,4 +172,9 @@ function Organization() {
   );
 }
 
-export default Organization;
+const mapStateToProps = (state) => {
+  return { lang: state.setting.lang };
+};
+
+export default connect(mapStateToProps, null)(Organization);
+

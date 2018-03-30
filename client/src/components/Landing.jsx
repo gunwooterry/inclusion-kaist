@@ -1,5 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
+
+import { setLanguage } from '../actions';
 import Button from './common/Button';
 import Column from './common/Column';
 import Header from './common/Header';
@@ -60,7 +63,7 @@ const renderProfiles = persons => persons.map(person => (
   </Column>
 ));
 
-function Landing() {
+function Landing(props) {
   return (
     <div>
       <div style={styles.topSectionBg}>
@@ -123,7 +126,7 @@ function Landing() {
       </Section>
       <Section backgroundColor={colors.white}>
         <Row style={styles.row}>
-          <Header text="도움 요청하기" centered />
+          <Header text={props.lang === 'kor' ? '도움 요청하기' : 'Request for help'} centered />
           <div style={styles.container}>
             <p style={styles.paragraph}>
               혐오, 차별을 접했거나 피해를 받고 있다면 포용성위원회에 도움을 요청할 수 있습니다.
@@ -134,9 +137,20 @@ function Landing() {
           </Button>
         </Row>
       </Section>
-      <Section backgroundColor={colors.darkGray} />
+      <Section backgroundColor={colors.darkGray}>
+        <div style={{textAlign: 'center', color: 'white'}}>
+          <div onClick={() => props.setLanguage('kor')}>한글</div>
+          <div onClick={() => props.setLanguage('eng')}>영어</div>
+        </div>
+      </Section>
     </div>
   );
 }
 
-export default Landing;
+const mapStateToProps = (state) => {
+  return { lang: state.setting.lang };
+};
+
+export default connect(mapStateToProps, {
+  setLanguage,
+})(Landing);

@@ -8,6 +8,9 @@ import Column from './common/Column';
 import Header from './common/Header';
 import Row from './common/Row';
 import Section from './common/Section';
+import { connect } from 'react-redux';
+import {setLanguage} from "../actions";
+
 
 const { Element, scroller } = Scroll;
 const half = window.innerHeight * 0.3;
@@ -164,11 +167,17 @@ class Report extends Component {
 
   render() {
     const { focus, reportType, phoneNumber } = this.state;
-    const reportOptions = [
-      { id: 1, text: '사건을 제보할래요' },
-      { id: 2, text: '상담을 받고 싶어요' },
-      { id: 3, text: '대화 상대가 필요해요' },
-    ];
+    const reportOptions = this.props.lang === 'kor' ?
+      [
+        { id: 1, text: '사건을 제보할래요' },
+        { id: 2, text: '상담을 받고 싶어요' },
+        { id: 3, text: '대화 상대가 필요해요' },
+      ] :
+      [
+        { id: 1, text: 'Report Incident' },
+        { id: 2, text: 'Need Counseling' },
+        { id: 3, text: 'Need Someone to Talk' },
+      ];
 
     return (
       <div style={styles.scrollContainer}>
@@ -273,5 +282,8 @@ class Report extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return { lang: state.setting.lang };
+};
 
-export default Report;
+export default connect(mapStateToProps, null)(Report);
