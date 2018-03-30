@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import NavBar from './components/common/NavBar';
 
@@ -7,6 +8,7 @@ import Landing from './components/Landing';
 import Organization from './components/Organization';
 import Report from './components/Report';
 import Resources from './components/Resources';
+import {setLanguage} from "./actions";
 
 class App extends React.Component {
   constructor() {
@@ -49,6 +51,12 @@ class App extends React.Component {
             bold
             isTop={this.state.isTop && !isReport}
           />
+          <NavBar.Lang
+            text={this.props.lang === 'kor' ? 'English' : '한글'}
+            work={() => this.props.setLanguage(this.props.lang === 'kor' ? 'eng' : 'kor')}
+            right
+            isTop={this.state.isTop && !isReport}
+          />
           <NavBar.Item
             text="제보하기"
             link="/report/"
@@ -85,5 +93,11 @@ class App extends React.Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return { lang: state.setting.lang };
+};
 
-export default withRouter(App);
+
+export default withRouter(connect(mapStateToProps, {
+  setLanguage,
+})(App));

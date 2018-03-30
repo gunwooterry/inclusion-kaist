@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-
-import { setLanguage } from '../actions';
 import Button from './common/Button';
 import Column from './common/Column';
 import Header from './common/Header';
@@ -137,12 +135,7 @@ function Landing(props) {
           </Button>
         </Row>
       </Section>
-      <Section backgroundColor={colors.darkGray}>
-        <div style={{textAlign: 'center', color: 'white'}}>
-          <div onClick={() => props.setLanguage('kor')}>한글</div>
-          <div onClick={() => props.setLanguage('eng')}>영어</div>
-        </div>
-      </Section>
+      <Section backgroundColor={colors.darkGray} />
     </div>
   );
 }
@@ -151,6 +144,4 @@ const mapStateToProps = (state) => {
   return { lang: state.setting.lang };
 };
 
-export default connect(mapStateToProps, {
-  setLanguage,
-})(Landing);
+export default connect(mapStateToProps, null)(Landing);

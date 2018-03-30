@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import NavBarLang from './NavBarLang';
 import NavBarItem from './NavBarItem';
 import Row from './Row';
 
@@ -67,5 +68,6 @@ function NavBar(props) {
 NavBar.propTypes = propTypes;
 NavBar.defaultProps = defaultProps;
 NavBar.Item = NavBarItem;
+NavBar.Lang = NavBarLang;
 
 export default NavBar;
