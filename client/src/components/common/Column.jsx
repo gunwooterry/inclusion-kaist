@@ -32,63 +32,27 @@ function Column(props) {
       margin: '0.8% 1%',
       float: 'left',
     },
-    1: {
-      width: '6.333%',
-    },
-    2: {
-      width: '14.666%',
-    },
-    3: {
-      width: '22.999%',
-    },
-    4: {
-      width: '31.332%',
-    },
-    5: {
-      width: '39.665%',
-    },
-    6: {
-      width: '47.998%',
-    },
-    7: {
-      width: '56.331%',
-    },
-    8: {
-      width: '64.664%',
-    },
-    9: {
-      width: '72.997%',
-    },
-    10: {
-      width: '81.33%',
-    },
-    11: {
-      width: '89.663%',
-    },
-    12: {
-      width: '97.999%',
-    },
   };
 
   return (
     <div>
       <MediaQuery query="(max-width: 768px)">
-        <div style={{ ...styles[xs], ...styles.col }}>
+        <div style={{ ...styles.col, width: `${(xs * 8.333) - 2}%` }}>
           {children}
         </div>
       </MediaQuery>
       <MediaQuery query="(min-width: 769px) and (max-width: 992px)">
-        <div style={{ ...styles[sm], ...styles.col }}>
+        <div style={{ ...styles.col, width: `${(sm * 8.333) - 2}%` }}>
           {children}
         </div>
       </MediaQuery>
       <MediaQuery query="(min-width: 993px) and (max-width: 1200px)">
-        <div style={{ ...styles[md], ...styles.col }}>
+        <div style={{ ...styles.col, width: `${(md * 8.333) - 2}%` }}>
           {children}
         </div>
       </MediaQuery>
       <MediaQuery query="(min-width: 1200px)">
-        <div style={{ ...styles[lg], ...styles.col }}>
+        <div style={{ ...styles.col, width: `${(lg * 8.333) - 2}%` }}>
           {children}
         </div>
       </MediaQuery>

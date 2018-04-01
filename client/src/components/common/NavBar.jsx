@@ -30,17 +30,14 @@ function NavBar(props) {
       padding: '18px 0',
       zIndex: 1,
     },
-
     top: {
       background: 'transparent',
       color: colors.white,
     },
-
     main: {
       background: colors.kaistBlue,
       color: colors.white,
     },
-
     scrolling: {
       backgroundColor: colors.white,
       color: colors.black,

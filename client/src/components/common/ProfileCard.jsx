@@ -26,23 +26,27 @@ function ProfileCard(props) {
   } = props;
 
   const styles = {
-    boxStyle: {
+    box: {
       margin: '15px auto',
       textAlign: 'left',
       verticalAlign: 'top',
       backgroundColor: 'transparent',
     },
-    imageStyle: {
+    textBox: {
+      padding: '4px 12px',
+      margin: '0 auto',
+    },
+    image: {
       width: '100%',
       height: '15rem',
       objectFit: 'cover',
     },
-    nameStyle: {
+    name: {
       margin: '0.2rem',
       fontSize: `${size}rem`,
       fontWeight: 600,
     },
-    posStyle: {
+    pos: {
       margin: '0.2rem',
       fontSize: `${size * 0.85}rem`,
       fontWeight: 300,
@@ -52,26 +56,25 @@ function ProfileCard(props) {
   return (
     <div>
       <MediaQuery query="(max-width: 768px)">
-        <div style={{ ...styles.boxStyle, margin: '8px auto' }}>
-          <div style={{ padding: '4px 12px', margin: '0 auto' }}>
-            <h3 style={styles.nameStyle}>{name}</h3>
-            <p style={styles.posStyle}>{dept}</p>
-            <p style={styles.posStyle}>{position}</p>
+        <div style={{ ...styles.box, margin: '8px auto' }}>
+          <div style={styles.textBox}>
+            <h3 style={styles.name}>{name}</h3>
+            <p style={styles.pos}>{dept}</p>
+            <p style={styles.pos}>{position}</p>
           </div>
         </div>
       </MediaQuery>
       <MediaQuery query="(min-width: 769px)">
-        <div style={styles.boxStyle}>
-          <img style={styles.imageStyle} src={imagePath} alt="professor" />
-          <div style={{ padding: '4px 12px', margin: '0 auto' }}>
-            <h3 style={styles.nameStyle}>{name}</h3>
-            <p style={styles.posStyle}>{dept}</p>
-            <p style={styles.posStyle}>{position}</p>
+        <div style={styles.box}>
+          <img style={styles.image} src={imagePath} alt="professor" />
+          <div style={styles.textBox}>
+            <h3 style={styles.name}>{name}</h3>
+            <p style={styles.pos}>{dept}</p>
+            <p style={styles.pos}>{position}</p>
           </div>
         </div>
       </MediaQuery>
     </div>
-
   );
 }
 

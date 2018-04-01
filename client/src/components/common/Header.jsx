@@ -26,13 +26,7 @@ function Header(props) {
     fontSize: `${size}rem`,
   };
 
-  return (
-    <h1
-      style={style}
-    >
-      {text}
-    </h1>
-  );
+  return <h1 style={style}>{text}</h1>;
 }
 
 Header.propTypes = propTypes;

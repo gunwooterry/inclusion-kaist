@@ -1,14 +1,47 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { setLanguage } from './actions';
 import NavBar from './components/common/NavBar';
-
 import Landing from './components/Landing';
 import Organization from './components/Organization';
 import Report from './components/Report';
 import Resources from './components/Resources';
-import {setLanguage} from "./actions";
+
+const propTypes = {
+  location: PropTypes.shape({}).isRequired,
+  lang: PropTypes.string.isRequired,
+  setLanguage: PropTypes.func.isRequired,
+};
+
+const text = {
+  opposite: {
+    ko: 'en',
+    en: 'ko',
+  },
+  oppositeText: {
+    ko: 'English',
+    en: '한국어',
+  },
+  report: {
+    ko: '제보하기',
+    en: 'Report',
+  },
+  resources: {
+    ko: '자료',
+    en: 'Resources',
+  },
+  orgs: {
+    ko: '학내 기구',
+    en: 'Organizations',
+  },
+  about: {
+    ko: '소개',
+    en: 'About Us',
+  },
+};
 
 class App extends React.Component {
   constructor() {
@@ -39,7 +72,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { location } = this.props;
+    const { location, lang } = this.props;
     const { pathname } = location;
     const isReport = pathname === '/report/';
     return (
@@ -52,31 +85,31 @@ class App extends React.Component {
             isTop={this.state.isTop && !isReport}
           />
           <NavBar.Lang
-            text={this.props.lang === 'kor' ? 'English' : '한글'}
-            work={() => this.props.setLanguage(this.props.lang === 'kor' ? 'eng' : 'kor')}
+            text={text.oppositeText[lang]}
+            work={() => this.props.setLanguage(text.opposite[lang])}
             right
             isTop={this.state.isTop && !isReport}
           />
           <NavBar.Item
-            text="제보하기"
+            text={text.report[lang]}
             link="/report/"
             right
             isTop={this.state.isTop && !isReport}
           />
           <NavBar.Item
-            text="자료"
+            text={text.resources[lang]}
             link="/resources/"
             right
             isTop={this.state.isTop && !isReport}
           />
           <NavBar.Item
-            text="학내 기구"
+            text={text.orgs[lang]}
             link="/orgs/"
             right
             isTop={this.state.isTop && !isReport}
           />
           <NavBar.Item
-            text="소개"
+            text={text.about[lang]}
             link="/"
             right
             isTop={this.state.isTop && !isReport}
@@ -93,11 +126,12 @@ class App extends React.Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return { lang: state.setting.lang };
-};
 
+App.propTypes = propTypes;
 
-export default withRouter(connect(mapStateToProps, {
-  setLanguage,
-})(App));
+const mapStateToProps = state => ({
+  lang: state.setting.lang,
+});
+
+const connectedApp = connect(mapStateToProps, { setLanguage })(App);
+export default withRouter(connectedApp);

@@ -31,13 +31,11 @@ function Button(props) {
       textDecoration: 'none',
       display: 'inline-block',
     },
-
     solid: {
       color: '#FFF',
       backgroundColor: color,
       boxShadow: '0 2px 4px rgba(0, 0, 0, 0.12)',
     },
-
     outline: {
       color,
       border: `2px solid ${color}`,
@@ -45,18 +43,14 @@ function Button(props) {
     },
   };
 
-  const style = Object.assign(
-    {},
-    styles.button,
-    outline ? styles.outline : styles.solid,
-    props.style,
-  );
+  const style = {
+    ...styles.button,
+    ...outline ? styles.outline : styles.solid,
+    ...props.style,
+  };
 
   return (
-    <a
-      href={link}
-      style={style}
-    >
+    <a href={link} style={style}>
       {children}
     </a>
   );

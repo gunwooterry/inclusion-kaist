@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 const INITIAL_STATE = {
-  lang: 'kor',
+  lang: 'ko',
 };
 
 const settingReducer = (state = INITIAL_STATE, action) => {

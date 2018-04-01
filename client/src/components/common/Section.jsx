@@ -32,15 +32,9 @@ function Section(props) {
     margin: '0px',
   };
 
-  const divStyle = Object.assign(
-    {},
-    sectionStyle,
-    style,
-  );
-
   return (
     <div
-      style={divStyle}
+      style={{ ...sectionStyle, ...style }}
       ref={reference}
     >
       {children}

@@ -36,26 +36,22 @@ function NavBarItem(props) {
       textDecoration: 'none',
       fontWeight: bold ? '600' : '300',
     },
-
     right: {
       float: 'right',
     },
-
     top: {
       color: colors.white,
     },
-
     scrolling: {
       color: colors.black,
     },
   };
 
-  const style = Object.assign(
-    {},
-    styles.navBarItem,
-    right && styles.right,
-    isTop ? styles.top : styles.scrolling,
-  );
+  const style = {
+    ...styles.navBarItem,
+    ...right && styles.right,
+    ...isTop ? styles.top : styles.scrolling,
+  };
 
   return (
     <NavLink to={link} style={style}>
