@@ -5,12 +5,14 @@ const propTypes = {
   link: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   outline: PropTypes.bool,
+  onClick: PropTypes.func,
   style: PropTypes.shape({}),
   children: PropTypes.node,
 };
 
 const defaultProps = {
   outline: false,
+  onClick: () => {},
   style: {},
   children: '',
 };
@@ -20,6 +22,7 @@ function Button(props) {
     link,
     color,
     outline,
+    onClick,
     children,
   } = props;
 
@@ -50,7 +53,7 @@ function Button(props) {
   };
 
   return (
-    <a href={link} style={style}>
+    <a href={link} style={style} onClick={onClick}>
       {children}
     </a>
   );

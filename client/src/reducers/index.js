@@ -1,18 +1,16 @@
 import { combineReducers } from 'redux';
 
-const INITIAL_STATE = {
+const initialSettings = {
   lang: 'ko',
 };
 
-const settingReducer = (state = INITIAL_STATE, action) => {
+const setting = (state = initialSettings, action) => {
   switch (action.type) {
     case 'LANG':
-      return { lang: action.payload };
+      return { lang: action.lang };
     default:
       return state;
   }
 };
 
-export default combineReducers({
-  setting: settingReducer,
-});
+export default combineReducers({ setting });

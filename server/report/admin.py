@@ -7,5 +7,6 @@ from .models import Report
 class ReportAdmin(ModelAdmin):
     list_display = (
         '__str__',
+        'option',
         'submitted',
     )

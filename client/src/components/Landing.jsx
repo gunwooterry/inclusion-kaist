@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import Button from './common/Button';
 import Column from './common/Column';
@@ -10,7 +11,6 @@ import Section from './common/Section';
 import Row from './common/Row';
 
 import { colors } from '../static/constants';
-import faculties from '../static/faculties';
 
 import headerImage from '../static/images/background.jpg';
 import researchIcon from '../static/images/icon-research.png';
@@ -55,17 +55,6 @@ const styles = {
   },
 };
 
-const renderProfiles = persons => persons.map(person => (
-  <Column xs={12} sm={4} md={4} lg={3}>
-    <ProfileCard
-      name={person.name}
-      dept={person.dept}
-      position={person.position}
-      imagePath={person.imagePath}
-    />
-  </Column>
-));
-
 const text = {
   headers: {
     whatWeDo: {
@@ -109,79 +98,106 @@ const text = {
   },
 };
 
-function Landing(props) {
-  const { lang } = props;
-  return (
-    <div>
-      <div style={styles.topSectionBg}>
-        <Section
-          backgroundColor="rgba(0, 65, 145, 0.8)"
-          style={styles.topSection}
-        >
+class Landing extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      people: [],
+    };
+  }
+
+  async componentWillMount() {
+    const response = await axios.get('http://api.inclusion.kaist.ac.kr/people/');
+    const people = response.data;
+    this.setState({ people });
+  }
+
+  render() {
+    const { lang } = this.props;
+    const { people } = this.state;
+    const renderPerson = person => (
+      <Column key={person.id} xs={12} sm={4} md={4} lg={3}>
+        <ProfileCard
+          name={person[`name_${lang}`]}
+          dept={person[`department_${lang}`]}
+          position={person[`position_${lang}`]}
+          imagePath={person.image}
+        />
+      </Column>
+    );
+
+    return (
+      <div>
+        <div style={styles.topSectionBg}>
+          <Section
+            backgroundColor="rgba(0, 65, 145, 0.8)"
+            style={styles.topSection}
+          >
+            <Row style={styles.row}>
+              <Header
+                text="We are here to listen."
+                color={colors.white}
+                size={3}
+                centered
+              />
+              <div style={styles.container}>
+                <p style={{ color: colors.white, ...styles.paragraph }}>
+                  {text.descriptions.purpose[lang]}
+                </p>
+              </div>
+            </Row>
+          </Section>
+        </div>
+        <Section backgroundColor={colors.white}>
           <Row style={styles.row}>
-            <Header
-              text="We are here to listen."
-              color={colors.white}
-              size={3}
-              centered
-            />
+            <Header text={text.headers.whatWeDo[lang]} centered />
             <div style={styles.container}>
-              <p style={{ color: colors.white, ...styles.paragraph }}>
-                {text.descriptions.purpose[lang]}
-              </p>
+              <Column xs={12} sm={4} md={4} lg={4}>
+                <img src={researchIcon} style={styles.icon} alt="lecture" />
+                <p style={styles.paragraph}>
+                  {text.descriptions.whatWeDo1[lang]}
+                </p>
+              </Column>
+              <Column xs={12} sm={4} md={4} lg={4}>
+                <img src={educationIcon} style={styles.icon} alt="lecture" />
+                <p style={styles.paragraph}>
+                  {text.descriptions.whatWeDo2[lang]}
+                </p>
+              </Column>
+              <Column xs={12} sm={4} md={4} lg={4}>
+                <img src={opinionIcon} style={styles.icon} alt="opinion" />
+                <p style={styles.paragraph}>
+                  {text.descriptions.whatWeDo3[lang]}
+                </p>
+              </Column>
             </div>
           </Row>
         </Section>
+        <Section backgroundColor={colors.lightBlue}>
+          <Row style={styles.row}>
+            <Header text={text.headers.people[lang]} centered />
+            <div style={styles.container}>
+              {people && people.map(renderPerson)}
+            </div>
+          </Row>
+        </Section>
+        <Section backgroundColor={colors.white}>
+          <Row style={styles.row}>
+            <Header text={text.headers.help[lang]} centered />
+            <div style={styles.container}>
+              <p style={styles.paragraph}>
+                {text.descriptions.help[lang]}
+              </p>
+            </div>
+            <Button link="/report/" color={colors.kaistBlue}>
+              {text.headers.helpButton[lang]}
+            </Button>
+          </Row>
+        </Section>
+        <Section backgroundColor={colors.darkGray} />
       </div>
-      <Section backgroundColor={colors.white}>
-        <Row style={styles.row}>
-          <Header text={text.headers.whatWeDo[lang]} centered />
-          <div style={styles.container}>
-            <Column xs={12} sm={4} md={4} lg={4}>
-              <img src={researchIcon} style={styles.icon} alt="lecture" />
-              <p style={styles.paragraph}>
-                {text.descriptions.whatWeDo1[lang]}
-              </p>
-            </Column>
-            <Column xs={12} sm={4} md={4} lg={4}>
-              <img src={educationIcon} style={styles.icon} alt="lecture" />
-              <p style={styles.paragraph}>
-                {text.descriptions.whatWeDo2[lang]}
-              </p>
-            </Column>
-            <Column xs={12} sm={4} md={4} lg={4}>
-              <img src={opinionIcon} style={styles.icon} alt="opinion" />
-              <p style={styles.paragraph}>
-                {text.descriptions.whatWeDo3[lang]}
-              </p>
-            </Column>
-          </div>
-        </Row>
-      </Section>
-      <Section backgroundColor={colors.lightBlue}>
-        <Row style={styles.row}>
-          <Header text={text.headers.people[lang]} centered />
-          <div style={styles.container}>
-            {renderProfiles(faculties)}
-          </div>
-        </Row>
-      </Section>
-      <Section backgroundColor={colors.white}>
-        <Row style={styles.row}>
-          <Header text={text.headers.help[lang]} centered />
-          <div style={styles.container}>
-            <p style={styles.paragraph}>
-              {text.descriptions.help[lang]}
-            </p>
-          </div>
-          <Button link="/report/" color={colors.kaistBlue}>
-            {text.headers.helpButton[lang]}
-          </Button>
-        </Row>
-      </Section>
-      <Section backgroundColor={colors.darkGray} />
-    </div>
-  );
+    );
+  }
 }
 
 Landing.propTypes = propTypes;

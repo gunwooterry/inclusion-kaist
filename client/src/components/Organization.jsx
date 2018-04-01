@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import Header from './common/Header';
 import Section from './common/Section';
@@ -14,28 +15,6 @@ import { colors } from '../static/constants';
 const propTypes = {
   lang: PropTypes.string.isRequired,
 };
-
-const orgList = Array(12).fill({
-  name: '인권윤리센터',
-  link: 'https://humanrights.kaist.ac.kr',
-  mail: 'humanrights@kaist.ac.kr',
-  number: '042-350-1004',
-  location: '교육지원동(W8) 1115',
-  description: '인권/성희롱/윤리 관련 상담/처리/예방교육/정책개발',
-});
-
-const renderOrgList = orgList.map(org => (
-  <Column xs="12" sm="6" md="4" lg="4">
-    <OrgCard
-      name={org.name}
-      link={org.link}
-      mail={org.mail}
-      number={org.number}
-      location={org.location}
-      description={org.description}
-    />
-  </Column>
-));
 
 const styles = {
   centered: {
@@ -90,49 +69,78 @@ const text = {
   },
 };
 
-function Organization(props) {
-  const { lang } = props;
-  return (
-    <div>
-      <Section
-        backgroundColor={colors.kaistBlue}
-        style={styles.topSection}
-      >
-        <Row style={styles.centered}>
-          <Header
-            text={text.headers.top[lang]}
-            color={colors.white}
-            size={2.5}
-            centered
-          />
-        </Row>
-      </Section>
-      <Section backgroundColor={colors.white}>
-        <Row style={styles.centered}>
-          <Header text={text.headers.list[lang]} centered />
-          <div style={styles.container}>
-            <p style={styles.paragraph}>
-              {text.descriptions.list[lang]}
-            </p>
-          </div>
-          {renderOrgList}
-        </Row>
-      </Section>
-      <Section backgroundColor={colors.lightBlue}>
-        <Row style={styles.centered}>
-          <Header text={text.headers.report[lang]} centered />
-          <div style={styles.container}>
-            <p style={styles.paragraph}>
-              {text.descriptions.report[lang]}
-            </p>
-          </div>
-          <Button link="/report/" color={colors.kaistBlue}>
-            {text.headers.reportButton[lang]}
-          </Button>
-        </Row>
-      </Section>
-    </div>
-  );
+class Organization extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      orgs: [],
+    };
+  }
+
+  async componentWillMount() {
+    const response = await axios.get('http://api.inclusion.kaist.ac.kr/orgs/');
+    const orgs = response.data;
+    this.setState({ orgs });
+  }
+
+  render() {
+    const { lang } = this.props;
+    const { orgs } = this.state;
+    const renderOrg = org => (
+      <Column key={org.id} xs={12} sm={6} md={4} lg={4}>
+        <OrgCard
+          name={org[`name_${lang}`]}
+          description={org[`description_${lang}`]}
+          location={org[`location_${lang}`]}
+          link={org.link}
+          email={org.email}
+          phone={org.phone}
+        />
+      </Column>
+    );
+
+    return (
+      <div>
+        <Section
+          backgroundColor={colors.kaistBlue}
+          style={styles.topSection}
+        >
+          <Row style={styles.centered}>
+            <Header
+              text={text.headers.top[lang]}
+              color={colors.white}
+              size={2.5}
+              centered
+            />
+          </Row>
+        </Section>
+        <Section backgroundColor={colors.white}>
+          <Row style={styles.centered}>
+            <Header text={text.headers.list[lang]} centered />
+            <div style={styles.container}>
+              <p style={styles.paragraph}>
+                {text.descriptions.list[lang]}
+              </p>
+            </div>
+            {orgs && orgs.map(renderOrg)}
+          </Row>
+        </Section>
+        <Section backgroundColor={colors.lightBlue}>
+          <Row style={styles.centered}>
+            <Header text={text.headers.report[lang]} centered />
+            <div style={styles.container}>
+              <p style={styles.paragraph}>
+                {text.descriptions.report[lang]}
+              </p>
+            </div>
+            <Button link="/report/" color={colors.kaistBlue}>
+              {text.headers.reportButton[lang]}
+            </Button>
+          </Row>
+        </Section>
+      </div>
+    );
+  }
 }
 
 Organization.propTypes = propTypes;

@@ -6,7 +6,7 @@ import { colors } from '../../static/constants';
 const propTypes = {
   text: PropTypes.string,
   right: PropTypes.bool,
-  work: PropTypes.node,
+  work: PropTypes.func,
   isTop: PropTypes.bool.isRequired,
   children: PropTypes.node,
   bold: PropTypes.bool,
@@ -15,7 +15,7 @@ const propTypes = {
 const defaultProps = {
   text: '',
   right: false,
-  work: null,
+  work: () => {},
   children: '',
   bold: false,
 };

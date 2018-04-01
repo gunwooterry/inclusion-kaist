@@ -7,12 +7,29 @@ import MdLocationOn from 'react-icons/lib/md/location-on';
 import { colors } from '../../static/constants';
 import SmallButton from './SmallButton';
 
+const propTypes = {
+  name: PropTypes.string.isRequired,
+  link: PropTypes.string,
+  email: PropTypes.string,
+  phone: PropTypes.string,
+  location: PropTypes.string,
+  description: PropTypes.string,
+};
+
+const defaultProps = {
+  link: '',
+  email: '',
+  phone: '',
+  location: '',
+  description: '',
+};
+
 function OrgCard(props) {
   const {
     name,
     link,
-    mail,
-    number,
+    email,
+    phone,
     location,
     description,
   } = props;
@@ -54,8 +71,8 @@ function OrgCard(props) {
     <div style={styles.box}>
       <h3 style={styles.name}>{name}</h3>
       <p style={styles.content}>{description}</p>
-      <p style={styles.pos}><MdLocalPhone /> {number}</p>
-      <p style={styles.pos}><MdMailOutline /> {mail}</p>
+      <p style={styles.pos}><MdLocalPhone /> {phone}</p>
+      <p style={styles.pos}><MdMailOutline /> {email}</p>
       <p style={styles.pos}><MdLocationOn /> {location}</p>
       <div style={styles.button}>
         <SmallButton link={link} color={colors.kaistBlue}>
@@ -67,22 +84,7 @@ function OrgCard(props) {
   );
 }
 
-OrgCard.propTypes = {
-  name: PropTypes.string,
-  link: PropTypes.string,
-  mail: PropTypes.string,
-  number: PropTypes.string,
-  location: PropTypes.string,
-  description: PropTypes.number,
-};
-
-OrgCard.defaultProps = {
-  name: '인권윤리센터',
-  link: 'https://humanrights.kaist.ac.kr',
-  mail: 'humanrights@kaist.ac.kr',
-  number: '042-350-1004',
-  location: '교육지원동(W8) 1115',
-  description: '인권/성희롱/윤리 관련 상담/처리/예방교육/정책개발',
-};
+OrgCard.propTypes = propTypes;
+OrgCard.defaultProps = defaultProps;
 
 export default OrgCard;

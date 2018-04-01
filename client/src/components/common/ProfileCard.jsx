@@ -2,17 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 
+import placeholderImg from '../../static/images/pby.png';
+
 const propTypes = {
   name: PropTypes.string.isRequired,
   dept: PropTypes.string,
   position: PropTypes.string,
-  imagePath: PropTypes.string.isRequired,
+  imagePath: PropTypes.string,
   size: PropTypes.number,
 };
 
 const defaultProps = {
   dept: '',
   position: '',
+  imagePath: '',
   size: 1.2,
 };
 
@@ -66,7 +69,7 @@ function ProfileCard(props) {
       </MediaQuery>
       <MediaQuery query="(min-width: 769px)">
         <div style={styles.box}>
-          <img style={styles.image} src={imagePath} alt="professor" />
+          <img style={styles.image} src={imagePath || placeholderImg} alt="professor" />
           <div style={styles.textBox}>
             <h3 style={styles.name}>{name}</h3>
             <p style={styles.pos}>{dept}</p>

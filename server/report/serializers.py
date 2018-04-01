@@ -7,4 +7,7 @@ class ReportSerializer(ModelSerializer):
     class Meta:
         model = Report
         fields = (
+            'option',
+            'content',
+            'phone',
         )

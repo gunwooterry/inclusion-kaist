@@ -1,12 +1,7 @@
 from rest_framework.generics import ListAPIView
 
-from .models import Article, Organization, Person
-from .serializers import ArticleSerializer, OrganizationSerializer, PersonSerializer
-
-
-class ArticleList(ListAPIView):
-    serializer_class = ArticleSerializer
-    queryset = Article.objects.all().order_by('-date')
+from .models import Organization, Person
+from .serializers import OrganizationSerializer, PersonSerializer
 
 
 class OrganizationList(ListAPIView):

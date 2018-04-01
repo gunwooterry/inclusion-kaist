@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Scroll from 'react-scroll';
 import Textarea from 'react-textarea-autosize';
+import axios from 'axios';
 
 import { colors } from '../static/constants';
 import Button from './common/Button';
@@ -151,6 +152,10 @@ const text = {
       ko: '부담이 된다면 남기지 않으셔도 됩니다.',
       en: 'You may choose to leave it a blank.',
     },
+    success: {
+      ko: '제보해 주셔서 감사합니다. 곧 입력하신 연락처로 연락드리겠습니다.',
+      en: 'Thank you for sharing. We will reach you soon.',
+    },
   },
 };
 
@@ -160,7 +165,8 @@ class Report extends Component {
     this.state = {
       focus: SELECT,
       reportType: -1,
-      phoneNumber: '',
+      content: '',
+      phone: '',
     };
     this.handleScroll = this.handleScroll.bind(this);
   }
@@ -181,9 +187,21 @@ class Report extends Component {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  onSubmit() {
-    // add http request
+  async onSubmit() {
+    const { lang } = this.props;
+    const { reportType, content, phone } = this.state;
+    try {
+      await axios.post('http://api.inclusion.kaist.ac.kr/reports/', {
+        option: reportType,
+        content,
+        phone,
+      });
+      this.setState({ reportType: -1, content: '', phone: '' });
+      // eslint-disable-next-line no-alert
+      alert(text.description.success[lang]);
+    } catch (e) {
+      // Do something when failed
+    }
   }
 
   handleScroll() {
@@ -205,7 +223,12 @@ class Report extends Component {
 
   render() {
     const { lang } = this.props;
-    const { focus, reportType, phoneNumber } = this.state;
+    const {
+      focus,
+      reportType,
+      content,
+      phone,
+    } = this.state;
     const reportOptions = [
       {
         id: 1,
@@ -281,6 +304,8 @@ class Report extends Component {
                   style={styles.textarea}
                   minRows={4}
                   placeholder={text.description.placeholder[lang]}
+                  onChange={event => this.setState({ content: event.target.value })}
+                  value={content}
                 />
               </div>
             </Row>
@@ -304,8 +329,8 @@ class Report extends Component {
                 <input
                   type="tel"
                   style={styles.phoneInput}
-                  onChange={event => this.setState({ phoneNumber: event.target.value.replace(/-/g, '') })}
-                  value={formatPhoneNumber(phoneNumber)}
+                  onChange={event => this.setState({ phone: event.target.value.replace(/-/g, '') })}
+                  value={formatPhoneNumber(phone)}
                 />
               </div>
             </Row>

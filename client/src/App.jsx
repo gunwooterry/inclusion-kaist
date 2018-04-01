@@ -13,7 +13,7 @@ import Resources from './components/Resources';
 const propTypes = {
   location: PropTypes.shape({}).isRequired,
   lang: PropTypes.string.isRequired,
-  setLanguage: PropTypes.func.isRequired,
+  onSetLanguage: PropTypes.func.isRequired,
 };
 
 const text = {
@@ -72,7 +72,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { location, lang } = this.props;
+    const { location, lang, onSetLanguage } = this.props;
     const { pathname } = location;
     const isReport = pathname === '/report/';
     return (
@@ -86,7 +86,7 @@ class App extends React.Component {
           />
           <NavBar.Lang
             text={text.oppositeText[lang]}
-            work={() => this.props.setLanguage(text.opposite[lang])}
+            work={() => onSetLanguage(text.opposite[lang])}
             right
             isTop={this.state.isTop && !isReport}
           />
@@ -96,12 +96,12 @@ class App extends React.Component {
             right
             isTop={this.state.isTop && !isReport}
           />
-          <NavBar.Item
+          {/* <NavBar.Item
             text={text.resources[lang]}
             link="/resources/"
             right
             isTop={this.state.isTop && !isReport}
-          />
+          /> */}
           <NavBar.Item
             text={text.orgs[lang]}
             link="/orgs/"
@@ -133,5 +133,9 @@ const mapStateToProps = state => ({
   lang: state.setting.lang,
 });
 
-const connectedApp = connect(mapStateToProps, { setLanguage })(App);
+const mapDispatchToProps = dispatch => ({
+  onSetLanguage: lang => dispatch(setLanguage(lang)),
+});
+
+const connectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
 export default withRouter(connectedApp);
