@@ -107,7 +107,7 @@ class Landing extends Component {
   }
 
   async componentWillMount() {
-    const response = await axios.get('http://api.inclusion.kaist.ac.kr/people/');
+    const response = await axios.get('http://52.78.50.185/people/');
     const people = response.data;
     this.setState({ people });
   }

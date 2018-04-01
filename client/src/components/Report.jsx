@@ -191,7 +191,7 @@ class Report extends Component {
     const { lang } = this.props;
     const { reportType, content, phone } = this.state;
     try {
-      await axios.post('http://api.inclusion.kaist.ac.kr/reports/', {
+      await axios.post('http://52.78.50.185/reports/', {
         option: reportType,
         content,
         phone,

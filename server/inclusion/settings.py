@@ -16,6 +16,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     'api.inclusion.kaist.ac.kr',
+    '52.78.50.185',
 ]
 
 

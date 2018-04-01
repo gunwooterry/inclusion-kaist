@@ -78,7 +78,7 @@ class Organization extends Component {
   }
 
   async componentWillMount() {
-    const response = await axios.get('http://api.inclusion.kaist.ac.kr/orgs/');
+    const response = await axios.get('http://52.78.50.185/orgs/');
     const orgs = response.data;
     this.setState({ orgs });
   }
