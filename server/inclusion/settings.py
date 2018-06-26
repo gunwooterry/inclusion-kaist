@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -122,6 +123,16 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# Email Setting
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+# Address to send email
+EMAIL_HOST_USER = '****@gmail.com'
+EMAIL_HOST_PASSWORD = '****'
+
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
