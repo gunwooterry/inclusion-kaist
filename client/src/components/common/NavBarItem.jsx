@@ -4,8 +4,11 @@ import { NavLink } from 'react-router-dom';
 
 import { colors } from '../../static/constants';
 
+import logoImg from '../../static/images/logo.png';
+
 const propTypes = {
   text: PropTypes.string,
+  logo: PropTypes.bool,
   link: PropTypes.string.isRequired,
   right: PropTypes.bool,
   isTop: PropTypes.bool.isRequired,
@@ -15,6 +18,7 @@ const propTypes = {
 
 const defaultProps = {
   text: '',
+  logo: false,
   right: false,
   children: '',
   bold: false,
@@ -24,9 +28,9 @@ function NavBarItem(props) {
   const {
     text,
     link,
+    logo,
     right,
     isTop,
-    children,
     bold,
   } = props;
 
@@ -45,6 +49,9 @@ function NavBarItem(props) {
     scrolling: {
       color: colors.black,
     },
+    imgStyle: {
+      width: '4rem',
+    },
   };
 
   const style = {
@@ -55,7 +62,7 @@ function NavBarItem(props) {
 
   return (
     <NavLink to={link} style={style}>
-      {text !== '' ? text : children}
+      { logo ? <img style={styles.imgStyle} src={logoImg} /> : text }
     </NavLink>
   );
 }

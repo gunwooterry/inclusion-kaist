@@ -112,6 +112,14 @@ class Landing extends Component {
     this.setState({ people });
   }
 
+  hexToRGB(hexColor, alpha) {
+    const R = parseInt(hexColor.substring(1, 3), 16);
+    const G = parseInt(hexColor.substring(3, 5), 16);
+    const B = parseInt(hexColor.substring(5, 7), 16);
+    return `rgba(${R},${G},${B},${alpha})`;
+  }
+
+
   render() {
     const { lang } = this.props;
     const { people } = this.state;
@@ -130,7 +138,7 @@ class Landing extends Component {
       <div>
         <div style={styles.topSectionBg}>
           <Section
-            backgroundColor="rgba(0, 65, 145, 0.8)"
+            backgroundColor={this.hexToRGB(colors.kaistBlue, 0.8)}
             style={styles.topSection}
           >
             <Row style={styles.row}>

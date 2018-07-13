@@ -80,6 +80,7 @@ class App extends React.Component {
         <NavBar isTop={this.state.isTop && !isReport}>
           <NavBar.Item
             text="Inclusion KAIST"
+            logo
             link="/"
             bold
             isTop={this.state.isTop && !isReport}
