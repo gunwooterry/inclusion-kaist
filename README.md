@@ -48,5 +48,5 @@ Don't forget to add migration files to Git.
 
 ## Contributors
 - Gunwoo Kim - [gunwooterry](https://github.com/gunwooterry)
-- Youngkyu Hong - [realykhong](https://github.com/realykhong)
+- Youngkyu Hong - [grayhong](https://github.com/grayhong)
 - Jooyoung Lee - [leenoix](https://github.com/leenoix)
